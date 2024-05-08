@@ -1,4 +1,10 @@
 :root {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   font-family: "Poppins", sans-serif;
 
   /* colours */
@@ -48,3 +54,17 @@ h2,
 h3 {
   font-weight: var(--font-medium);
 }
+
+img,
+video {
+  width: 100%;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --secondary: #1b2149;
+
+    color: #fff;
+    background-color: var(--secondary);
+  }
+} */
