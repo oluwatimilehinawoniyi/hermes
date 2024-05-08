@@ -1,3 +1,50 @@
 :root {
+  font-family: "Poppins", sans-serif;
 
+  /* colours */
+  --primary: #7b57df;
+  --secondary: #1b2149;
+
+  /* accent colours */
+  --success: #5dc983;
+  --warning: #f2af4c;
+  --danger: #eb5769;
+
+  /* font weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+
+  /* font sizes */
+  --size-small: 14px; /*for buttons too*/
+  --size-regular: 16px;
+  --size-large: 20px;
+  --size-extra-large: 24px;
+}
+
+html {
+  font-size: var(--size-regular);
+}
+
+h1 {
+  font-size: var(--size-extra-large);
+}
+
+h2 {
+  font-size: var(--size-large);
+}
+
+h3,
+button {
+  font-size: var(--size-small);
+}
+
+h1,
+button {
+  font-weight: var(--font-semibold);
+}
+
+h2,
+h3 {
+  font-weight: var(--font-medium);
 }
