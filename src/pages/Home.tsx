@@ -1,11 +1,10 @@
 import Button from "@components/UI/Button/Button";
-import { Footer, Hero } from "@components/layouts";
-import { ArrowUpDown, ArrowUpRight } from "lucide-react";
+import { Features, Footer, Hero } from "@components/layouts";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="">
-      {/* add relative position here */}
       <Hero />
       <Features />
       <DeliveryStats />
@@ -14,32 +13,6 @@ export default function Home() {
       <CallToAction />
       <Footer />
     </main>
-  );
-}
-
-function Features() {
-  return (
-    <Section>
-      <div>
-        <h1>Lorem ipsum dolor sit.</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          placeat ea, iure non reiciendis porro fugit temporibus, eius vel
-          dolorem debitis odio!
-        </p>
-      </div>
-      <div>
-        {Array.from({ length: 4 }, (_, index) => (
-          <div key={index}>
-            <span>
-              <ArrowUpDown />
-            </span>
-            <h3>Lorem, ipsum.</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-          </div>
-        ))}
-      </div>
-    </Section>
   );
 }
 

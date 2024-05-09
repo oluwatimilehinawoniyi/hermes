@@ -1,0 +1,64 @@
+.features {
+  display: flex;
+  align-items: start;
+  gap: 2rem;
+  width: 100%;
+  margin-block: 6rem;
+}
+
+.featureHeader {
+  width: 45%;
+}
+
+.featureHeader h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: var(--line-height-regular);
+  margin-bottom: .7rem;
+}
+
+.featureHeader p {
+  font-size: var(--size-small);
+}
+
+.featureHeader span {
+  color: var(--primary);
+}
+
+.featuresList {
+  width: 55%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.featuresList div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.featuresList div h3 {
+  line-height: 1;
+  font-weight: var(--font-semibold);
+  font-size: var(--size-regular);
+}
+
+.featuresList div p {
+  font-size: var(--size-small);
+}
+
+.featuresList div span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius);
+}
+
+.featuresList div span svg {
+  stroke: white;
+}
