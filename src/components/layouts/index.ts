@@ -1,6 +1,7 @@
-import NavigationBar from "./Navigation/NavigationBar";
-import Footer from "./Footer/Footer";
-import Hero from "./Hero/Hero";
-import Features from "./Feature/Features";
+import NavigationBar from "./LandingPage/Navigation/NavigationBar";
+import Footer from "./LandingPage/Footer/Footer";
+import Hero from "./LandingPage/Hero/Hero";
+import Features from "./LandingPage/Feature/Features";
+import WhatWeDo from "./LandingPage/WhatWeDo/WhatWeDo";
 
-export { NavigationBar, Footer, Hero, Features };
+export { WhatWeDo, NavigationBar, Footer, Hero, Features };
