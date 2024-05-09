@@ -1,0 +1,66 @@
+.doings {
+  margin-block: 4rem;
+}
+
+.doingsTextContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.doingsText {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  /* gap: 2rem; */
+}
+
+.doingsText h1 {
+  width: 50%;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: var(--line-height-regular);
+}
+
+.doingsText h1 span {
+  color: var(--primary);
+}
+
+.doingsText p {
+  width: 50%;
+}
+
+.videoHolder {
+  margin-top: 3rem;
+  position: relative;
+  height: 400px;
+}
+
+.statsHolder {
+  position: absolute;
+  bottom: 0;
+
+  z-index: 1;
+  margin-block: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.stats h1 {
+  font-size: 2rem;
+}
+
+.stats p,
+.stats h1 {
+  color: white;
+}
+
+.stats {
+  text-align: center;
+}
