@@ -1,12 +1,11 @@
 import Button from "@components/UI/Button/Button";
-import { Footer, NavigationBar } from "@components/layouts";
+import { Footer, Hero } from "@components/layouts";
 import { ArrowUpDown, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="">
       {/* add relative position here */}
-      <NavigationBar />
       <Hero />
       <Features />
       <DeliveryStats />
@@ -18,38 +17,9 @@ export default function Home() {
   );
 }
 
-import shipment from "@assets/images/shipment.jpg";
-
-function Hero() {
-  return (
-    <section>
-      <div>
-        <h1>expand your business while we manage all your logistical needs</h1>
-
-        <div>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta
-            harum vel doloremque. Hic commodi excepturi quae iste facilis. Aut,
-            saepe?
-          </p>
-          <Button>
-            <p>get started</p>
-            <ArrowUpRight />
-          </Button>
-        </div>
-      </div>
-      <img
-        src={shipment}
-        alt="image of a port with a ship on th ocean and containers on the port"
-      />
-      {/* image credit: Photo by Tom Fisk: https://www.pexels.com/photo/drone-shot-of-a-cargo-ship-on-port-3856433/ */}
-    </section>
-  );
-}
-
 function Features() {
   return (
-    <section>
+    <Section>
       <div>
         <h1>Lorem ipsum dolor sit.</h1>
         <p>
@@ -69,7 +39,7 @@ function Features() {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -77,7 +47,7 @@ import shipmentVideo from "@assets/images/shipment.mp4";
 
 function DeliveryStats() {
   return (
-    <section>
+    <Section>
       <div>
         <h1>Lorem ipsum dolor sit amet consectetur.</h1>
         <div>
@@ -100,17 +70,16 @@ function DeliveryStats() {
         <video width="750" autoPlay loop muted>
           <source src={shipmentVideo} type="video/mp4" />
           Your browser does not support the video tag.
+          {/* // video credit: Video by Jay S: https://www.pexels.com/video/a-railway-crossing-4021642/ */}
         </video>
       </div>
-    </section>
+    </Section>
   );
 }
 
-// video credit: Video by Jay S: https://www.pexels.com/video/a-railway-crossing-4021642/
-
 function Associates() {
   return (
-    <section>
+    <Section>
       <div className="">
         <h1>we serve more than 50+ countries</h1>
         <p>
@@ -121,7 +90,7 @@ function Associates() {
       <div className="">
         <CountriesCarousel />
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -171,7 +140,7 @@ function CountriesCarousel() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   return (
-    <section>
+    <Section>
       {countries.slice(0, 8).map((country, index) => (
         <Country
           key={index}
@@ -180,7 +149,7 @@ function CountriesCarousel() {
           alt={country.flags.alt}
         />
       ))}
-    </section>
+    </Section>
   );
 }
 
@@ -205,7 +174,7 @@ function Country({
 
 function CallToAction() {
   return (
-    <section>
+    <Section>
       <div>
         <h1>
           It's your time to make the impact you've always dreamed of. We are
@@ -216,15 +185,16 @@ function CallToAction() {
           <ArrowUpRight />
         </Button>
       </div>
-    </section>
+    </Section>
   );
 }
 
 import profile from "@assets/images/profile.jpg";
+import Section from "@components/UI/Section/Section";
 
 function Testimonials() {
   return (
-    <section>
+    <Section>
       <h1>your fellow associates said:</h1>
       <div>
         <div className="">
@@ -249,6 +219,6 @@ function Testimonials() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

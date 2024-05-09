@@ -1,12 +1,13 @@
 import Button from "@components/UI/Button/Button";
 import Logo from "@components/UI/Logo/Logo";
+import styles from "./navigation.module.css";
 
 export default function NavigationBar() {
   return (
-    <nav>
-      <div>
+    <nav className={styles.nav}>
+      <div className={styles.logoHolder}>
         <Logo />
-        <h1>| internal</h1>
+        <h3>| internal</h3>
       </div>
 
       <div>

@@ -1,0 +1,28 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  border: none;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  /* font-weight: var(--font-medium); */
+  font: inherit;
+  cursor: pointer;
+  font-size: var(--size-small);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.message {
+  transform: translateY(-10px);
+  color: var(--danger);
+  font-size: var(--size-very-small);
+  opacity: 1;
+  text-transform: lowercase;
+}

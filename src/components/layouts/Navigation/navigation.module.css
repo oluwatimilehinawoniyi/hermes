@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoHolder {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logoHolder h3 {
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-weight: var(--font-medium);
+}
