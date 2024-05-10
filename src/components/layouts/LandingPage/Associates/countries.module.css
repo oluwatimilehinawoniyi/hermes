@@ -1,0 +1,74 @@
+.countriesHolder {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 400px;
+}
+
+.countriesHolder::after,
+.countriesHolder::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 1;
+}
+
+.countriesHolder::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  top: 0;
+}
+
+.countriesHolder::after {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  bottom: 0;
+}
+
+.countries {
+  display: flex;
+  gap: 0rem;
+  flex-direction: column;
+  animation: 10s slide infinite linear;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 20px 0;
+}
+
+.country span {
+  border: 2px solid var(--primary);
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.country span img {
+  object-position: center;
+}
+
+@keyframes slide {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}

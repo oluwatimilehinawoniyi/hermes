@@ -1,0 +1,32 @@
+.associates {
+  margin-block: 8rem;
+  display: flex;
+  align-items: start;
+  width: 100%;
+  /* height: 400px; */
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.associateText {
+  width: 40%;
+}
+
+.associateText h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: var(--line-height-regular);
+  margin-bottom: 0.7rem;
+}
+
+.associateText p {
+  font-size: var(--size-small);
+}
+
+.associateText span {
+  color: var(--primary);
+}
+
+.associateCarousel {
+  width: max-content;
+}
