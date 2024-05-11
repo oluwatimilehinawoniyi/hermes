@@ -5,8 +5,10 @@ import Features from "./LandingPage/Feature/Features";
 import WhatWeDo from "./LandingPage/WhatWeDo/WhatWeDo";
 import Associates from "./LandingPage/Associates/Associates";
 import CallToAction from "./LandingPage/CTA/CTA";
+import Testimonials from "./LandingPage/Testimonial/Testimonials";
 
 export {
+  Testimonials,
   CallToAction,
   Associates,
   WhatWeDo,

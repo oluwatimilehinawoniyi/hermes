@@ -34,6 +34,7 @@
 
   /* radius */
   --radius: 4px;
+  --radius-testimony-card: 14px;
 
   /* line height */
   --line-height-regular: 1.2;
@@ -55,7 +56,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--text-colour);
+  /* color: var(--text-colour); */
+  color: var(--secondary);
 }
 
 p {
