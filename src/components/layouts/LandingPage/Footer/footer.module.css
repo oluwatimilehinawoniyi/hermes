@@ -1,0 +1,30 @@
+.footer {
+  padding-block: 4rem;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.footer div:nth-of-type(1) {
+  display: flex;
+}
+
+.footer div:nth-of-type(2),
+.footer div:nth-of-type(2) ul {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer div:nth-of-type(2) {
+  flex-direction: column;
+}
+
+div:nth-of-type(2) p {
+  font-size: var(--size-small);
+}
+
+ul li {
+  list-style: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
