@@ -1,6 +1,7 @@
 import Button from "@components/UI/Button/Button";
 import Logo from "@components/UI/Logo/Logo";
 import styles from "./navigation.module.css";
+import { Link } from "react-router-dom";
 
 export default function NavigationBar() {
   return (
@@ -11,7 +12,9 @@ export default function NavigationBar() {
       </div>
 
       <div>
-        <Button>login</Button>
+        <Button>
+          <Link to="/login">login</Link>
+        </Button>
       </div>
     </nav>
   );

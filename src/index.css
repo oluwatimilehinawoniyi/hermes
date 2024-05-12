@@ -94,6 +94,11 @@ video {
   object-fit: cover;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --secondary: #1b2149;
