@@ -5,15 +5,32 @@
   justify-content: center;
   width: 100%;
   padding-block: 4rem;
+  padding-inline: 1rem;
   margin-top: 4rem;
 }
 
 .cta h1 {
-  width: 80%;
   text-align: center;
   color: white;
   text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 1.15rem;
   line-height: var(--line-height-regular);
   margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .cta {
+    padding-inline: 1.2rem;
+  }
+
+  .cta h1 {
+    width: 80%;
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .cta {
+    padding-inline: 0;
+  }
 }

@@ -40,46 +40,44 @@ export default function Testimonials() {
         <h1 className={styles.testimonialHeader}>
           your fellow <br /> <span>associates</span> said:
         </h1>
-        <div>
-          <motion.div
-            className={styles.testimonyContainer}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <div className={styles.testifiersContainer}>
-              {testimonies.map(({ name, id, alt, imgSrc, title }, index) => (
-                <motion.div
-                  className={`${styles.testifier} ${
-                    activeIndex === index ? styles.activeTestifier : ""
-                  }`}
-                  variants={itemVariants}
-                  onClick={() => handleTestifierClick(index)}
-                  key={index}
-                >
-                  <span className={styles.testifiersImage}>
-                    <img src={imgSrc} alt={alt} />
-                  </span>
-                  <span className={styles.testifiersName} key={id}>
-                    <h2>{name}</h2>
-                    <p>{title}</p>
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-            <div className={styles.testimonies}>
+        <motion.div
+          className={styles.testimonyContainer}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className={styles.testifiersContainer}>
+            {testimonies.map(({ name, id, alt, imgSrc, title }, index) => (
               <motion.div
-                className={styles.testimony}
-                key={activeIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                className={`${styles.testifier} ${
+                  activeIndex === index ? styles.activeTestifier : ""
+                }`}
+                variants={itemVariants}
+                onClick={() => handleTestifierClick(index)}
+                key={index}
               >
-                <p>{testimonies[activeIndex].testimony}</p>
+                <span className={styles.testifiersImage}>
+                  <img src={imgSrc} alt={alt} />
+                </span>
+                <span className={styles.testifiersName} key={id}>
+                  <h2>{name}</h2>
+                  <p>{title}</p>
+                </span>
               </motion.div>
-            </div>
-          </motion.div>
-        </div>
+            ))}
+          </div>
+          <div className={styles.testimonies}>
+            <motion.div
+              className={styles.testimony}
+              key={activeIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <p>{testimonies[activeIndex].testimony}</p>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </Section>
   );

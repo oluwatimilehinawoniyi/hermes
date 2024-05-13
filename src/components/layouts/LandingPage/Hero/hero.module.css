@@ -1,5 +1,6 @@
 .hero {
   padding-top: 1.5rem;
+  padding-inline: 1rem;
 }
 
 .heroContent {
@@ -8,30 +9,30 @@
 
 .heroText {
   display: flex;
-  align-items: start;
-  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: max-content;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 .heroText h1 {
-  width: 60%;
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 1.5rem;
   line-height: var(--line-height-regular);
-}
-
-.heroText div {
-  width: 40%;
 }
 
 .spanImg {
   overflow: hidden;
-  height: 46px;
-  width: 150px;
+  height: 25px;
+  width: 100px;
   display: inline-block;
   transform: translateY(5px);
-  margin-inline: 14px;
+  margin-inline: 10px;
+}
+
+.second {
+  margin-left: 0;
 }
 
 .spanImg img {
@@ -45,19 +46,74 @@
 }
 
 .details {
-  /* font-size: var(--size-small); */
-  height: 100%;
+  font-size: var(--size-small);
   display: flex;
   flex-direction: column;
   align-items: start;
-  /* justify-content: space-between;
-   */
   gap: 1rem;
 }
 
 .heroImg {
-  margin-top: 3rem;
-  height: 400px;
+  margin-top: 2rem;
+  height: 200px;
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    padding-inline: 1.2rem;
+  }
+
+  .heroText {
+    gap: unset;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .heroText h1 {
+    width: 60%;
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: var(--line-height-regular);
+  }
+
+  .spanImg {
+    height: 46px;
+    width: 150px;
+    margin-inline: 14px;
+  }
+
+  .second {
+    margin-left: unset;
+  }
+
+  .spanImg img {
+    border-radius: 100px;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .spanText {
+    color: var(--primary);
+  }
+
+  .details {
+    /* font-size: var(--size-small); */
+    height: 100%;
+    width: 40%;
+    gap: 1rem;
+  }
+
+  .heroImg {
+    margin-top: 3rem;
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero {
+    padding-inline: 0;
+  }
 }

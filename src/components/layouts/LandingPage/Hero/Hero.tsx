@@ -21,7 +21,7 @@ export default function Hero() {
                 {/* Photo by fauxels: https://www.pexels.com/photo/colleagues-shaking-each-other-s-hands-3184291/ */}
               </span>
               culture of <span className={styles.spanText}>inclusion</span>
-              <span className={styles.spanImg}>
+              <span className={`${styles.spanImg} ${styles.second}`}>
                 <img src={people} alt="" className={styles.img} />
                 {/*Photo by Rebrand Cities: https://www.pexels.com/photo/group-oo-people-having-a-meeting-1367276/ */}
               </span>

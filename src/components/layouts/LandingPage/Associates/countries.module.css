@@ -4,7 +4,7 @@
   position: relative;
   white-space: nowrap;
   overflow: hidden;
-  height: 400px;
+  height: 250px;
 }
 
 .countriesHolder::after,
@@ -44,11 +44,21 @@
   animation: 10s slide infinite linear;
 }
 
+@media screen and (min-width: 768px) {
+  .countriesHolder {
+    height: 400px;
+  }
+}
+
 .country {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin: 20px 0;
+}
+
+.country h3 {
+  font-size: var(--size-very-small);
 }
 
 .country span {

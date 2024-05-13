@@ -9,14 +9,15 @@
   font-family: "Poppins", sans-serif;
 
   /* colours */
-  --primary: #7b57df;
+  /* --primary: #7b57df; */
+  --primary: #5dc983;
   --secondary: #1b2149;
   --secondar: #0e1126;
   --text-colour: #363636;
   --faded-text-colour: #363636bb;
 
   /* accent colours */
-  --success: #5dc983;
+  /* --success: #5dc983; */
   --warning: #f2af4c;
   --danger: #eb5769;
 
