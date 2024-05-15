@@ -10,10 +10,9 @@ export default function NavigationBar() {
         <Logo />
         <h3>| internal</h3>
       </div>
-
       <div>
         <Button>
-          <Link to="/login">login</Link>
+          <Link to="/auth">login</Link>
         </Button>
       </div>
     </nav>

@@ -9,7 +9,7 @@ export default function CallToAction() {
       <div className={styles.cta}>
         <h1>It's your time to make the impact you've always dreamed of</h1>
         <Button backgroundColor="white">
-          <Link to="/login">get started</Link>
+          <Link to="/auth">get started</Link>
         </Button>
       </div>
     </Section>
