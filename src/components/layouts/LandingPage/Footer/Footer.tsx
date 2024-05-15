@@ -1,12 +1,13 @@
 import Section from "@components/UI/Section/Section";
 import styles from "./footer.module.css";
+import Logo from "@components/UI/Logo/Logo";
 
 export default function Footer() {
   return (
     <Section>
       <footer className={styles.footer}>
         <div>
-          <h1>Hermes</h1>
+          <Logo />
         </div>
         <div>
           <ul>
