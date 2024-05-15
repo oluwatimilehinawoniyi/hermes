@@ -15,7 +15,7 @@ export default function CountriesCarousel() {
           const startIndex = index * sliceIndex;
           const endIndex = startIndex + sliceIndex;
           return (
-            <div>
+            <div key={index}>
               <div className={styles.countries}>
                 {countries.slice(startIndex, endIndex).map((country, index) => (
                   <Country

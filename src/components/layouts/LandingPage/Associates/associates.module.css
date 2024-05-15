@@ -20,12 +20,27 @@
   display: none;
 }
 
+
+.associateText p {
+  font-size: var(--size-small);
+}
+
+.associateText span {
+  color: var(--primary);
+}
+
+.associateCarousel {
+  width: max-content;
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .associates {
     padding: 0 1.2rem;
     margin-block: 6rem;
     align-items: start;
     flex-direction: row;
+    gap: 4rem;
   }
 
   .associateText {
@@ -40,23 +55,14 @@
   .associateText h1 br:nth-of-type(1) {
     display: unset;
   }
+
+  .associateCarousel {
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .associates {
     padding: 0;
   }
-}
-
-.associateText p {
-  font-size: var(--size-small);
-}
-
-.associateText span {
-  color: var(--primary);
-}
-
-.associateCarousel {
-  width: max-content;
-  width: 100%;
 }
