@@ -1,0 +1,35 @@
+/* .input_styles {
+} */
+
+/* .input_styles label {
+} */
+
+.input_styles input {
+  width: 100%;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: var(--radius);
+  margin-bottom: 0.7rem;
+}
+
+.input_styles input:focus {
+  border: none;
+  outline: 2px solid var(--primary);
+  background-color: #fff;
+}
+
+.input_styles input::placeholder {
+  color: var(--faded-text-colour);
+  text-transform: capitalize;
+  font-size: var(--size-small);
+}
+
+/* .input_styles:not(:last-of-type) {
+} */
+
+.checkbox_styles {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
