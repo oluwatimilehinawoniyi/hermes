@@ -31,6 +31,11 @@ export default function SignUp() {
     console.log("location:", location);
     console.log("Email:", email);
     console.log("Password:", password);
+
+    setEmail("");
+    setPassword("");
+    setfullName("");
+    setLocation("");
   };
 
   return (

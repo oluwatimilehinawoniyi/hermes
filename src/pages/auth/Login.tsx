@@ -26,6 +26,10 @@ export default function Login() {
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Remember Me:", rememberMe);
+
+    setEmail("");
+    setPassword("");
+    setRememberMe(false);
   };
 
   return (
