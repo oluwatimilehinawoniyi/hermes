@@ -18,16 +18,16 @@
 
 .heroText h1 {
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: var(--line-height-regular);
 }
 
 .spanImg {
   overflow: hidden;
-  height: 25px;
+  height: 29.5px;
   width: 100px;
   display: inline-block;
-  transform: translateY(5px);
+  transform: translateY(3px);
   margin-inline: 10px;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .details {
-  font-size: var(--size-small);
+  font-size: var(--size-regular);
   display: flex;
   flex-direction: column;
   align-items: start;

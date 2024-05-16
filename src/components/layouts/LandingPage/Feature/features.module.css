@@ -10,13 +10,13 @@
 
 .featureHeader h1 {
   text-transform: uppercase;
-  font-size: 1.15rem;
+  font-size: 1.7rem;
   line-height: var(--line-height-regular);
   margin-bottom: 0.7rem;
 }
 
 .featureHeader p {
-  font-size: var(--size-small);
+  font-size: var(--size-regular);
 }
 
 .featureHeader span {
@@ -38,11 +38,12 @@
 
 .featuresList div h3 {
   line-height: 1;
+  font-size: var(--size-regular);
   font-weight: var(--font-semibold);
 }
 
 .featuresList div p {
-  font-size: var(--size-very-small);
+  font-size: var(--size-small);
 }
 
 .featuresList div span {

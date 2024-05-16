@@ -20,12 +20,12 @@ export default function Hero() {
                 <img src={expand} alt="" className={styles.img} />
                 {/* Photo by fauxels: https://www.pexels.com/photo/colleagues-shaking-each-other-s-hands-3184291/ */}
               </span>
-              culture of <span className={styles.spanText}>inclusion</span>
+              culture of <span className={styles.spanText}> growth</span>
               <span className={`${styles.spanImg} ${styles.second}`}>
                 <img src={people} alt="" className={styles.img} />
                 {/*Photo by Rebrand Cities: https://www.pexels.com/photo/group-oo-people-having-a-meeting-1367276/ */}
               </span>
-              and <span className={styles.spanText}>growth</span>
+              and <span className={styles.spanText}>drive</span>
             </h1>
 
             <div className={styles.details}>

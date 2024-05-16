@@ -4,13 +4,10 @@
 
 .testimonialHeader {
   text-transform: uppercase;
-  font-size: 1.15rem;
+  font-size: 1.7rem;
   line-height: var(--line-height-regular);
   margin-bottom: 1rem;
 }
-
-/* .testimonialHeader p {
-} */
 
 .testimonialHeader span {
   color: var(--primary);
