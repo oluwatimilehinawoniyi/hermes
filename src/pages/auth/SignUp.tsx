@@ -102,7 +102,7 @@ export default function SignUp() {
       ) : (
         <>
           <h1>Join our company</h1>
-          <button onClick={() => SignUpWithGoogle}>Sign up with Google</button>
+          <button onClick={SignUpWithGoogle}>Sign up with Google</button>
           <p
             style={{
               marginBottom: ".6rem",
