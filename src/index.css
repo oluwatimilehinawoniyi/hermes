@@ -127,10 +127,12 @@ a {
   width: 100%;
   background-color: var(--primary);
   display: block;
-  padding-block: 10px;
+  /* padding-block: 10px; */
+  height: 40px;
   border: none;
   border-radius: var(--radius);
   color: white;
   font: inherit;
   font-weight: var(--font-semibold);
+  cursor: pointer;
 }

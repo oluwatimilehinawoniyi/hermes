@@ -3,6 +3,7 @@ import Logo from "@components/UI/Logo/Logo";
 import { Outlet } from "react-router-dom";
 
 export default function Auth() {
+ 
   return (
     <section className={styles.auth}>
       <AuthLeaf />
