@@ -82,6 +82,9 @@ export default function SignUp() {
   function SignUpWithGoogle() {
     supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: "https://iuzjrvqnnpwvkoguvgxn.supabase.co/auth/v1/callback",
+      },
     });
   }
 
