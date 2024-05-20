@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Auth, Dashboard, Home, Login, SignUp } from "./pages";
+import { Auth, Dashboard, Home, Login, SignUp } from "@pages/index";
+import { AppHome } from "@pages/app";
 
 export default function App() {
   return (
@@ -11,7 +12,9 @@ export default function App() {
           <Route path="signup" element={<SignUp />} />
         </Route>
 
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<AppHome />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
