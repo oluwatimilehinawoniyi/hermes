@@ -15,6 +15,7 @@
   --secondar: #0e1126;
   --text-colour: #363636;
   --faded-text-colour: #363636bb;
+  --line-colour: rgba(215, 215, 215, 0.479);
 
   /* accent colours */
   /* --success: #5dc983; */
@@ -100,6 +101,9 @@ a {
   color: inherit;
 }
 
+li {
+  list-style: none;
+}
 /* @media (prefers-color-scheme: dark) {
   :root {
     --secondary: #1b2149;

@@ -1,0 +1,56 @@
+import { Link } from "react-router-dom";
+import styles from "./logo.module.css";
+import { useEffect, useState } from "react";
+
+interface LogoProps {
+  isLink: boolean;
+  width: number;
+  bigWidth: number;
+}
+
+export default function Logo({ isLink, width, bigWidth }: LogoProps) {
+  const [currentWidth, setCurrentWidth] = useState(width);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setCurrentWidth(bigWidth);
+      } else {
+        setCurrentWidth(width);
+      }
+    };
+
+    // Set initial width
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [width, bigWidth]);
+
+  const logoSvg = (
+    <svg
+      id="Layer_2"
+      data-name="Layer 2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 317.63 71.2"
+      style={{ width: `${currentWidth}px` }}
+    >
+      {/* SVG content here */}
+    </svg>
+  );
+
+  if (isLink) {
+    return (
+      <Link className={styles.logo} to="/" style={{ width: `${currentWidth}px` }}>
+        {logoSvg}
+      </Link>
+    );
+  } else {
+    return <div className={styles.logo} style={{ width: `${currentWidth}px` }}>{logoSvg}</div>;
+  }
+}

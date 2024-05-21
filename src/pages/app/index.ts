@@ -1,4 +1,7 @@
 import AppHome from "./AppHome";
-import Sidebar from "./Sidebar";
+import Branches from "./Branches";
+import Clients from "./Clients";
+import Parcels from "./Parcels";
+import Shipment from "./Shipment";
 
-export { Sidebar, AppHome };
+export { AppHome, Branches, Clients, Parcels, Shipment };

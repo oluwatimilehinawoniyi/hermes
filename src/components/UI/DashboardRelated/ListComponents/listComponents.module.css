@@ -1,0 +1,99 @@
+/* List Item Holder */
+
+.listItemHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* LIST ITEM */
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notifListItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem .25rem;
+
+  .itemConstant {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    p {
+      font-size: var(--size-small);
+    }
+
+    svg {
+      stroke: var(--faded-text-colour);
+    }
+  }
+}
+
+.navLinkItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem .25rem;
+  border-radius: var(--radius);
+  .navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.25rem;
+    p {
+      font-size: var(--size-small);
+    }
+
+    svg {
+      stroke: var(--faded-text-colour);
+    }
+  }
+}
+
+li:has(.activeNavLink) {
+  position: relative;
+  .navLinkItem {
+      background-color: var(--line-colour);
+    .navItem {
+    font-weight: var(--font-semibold);
+    }
+    svg {
+      stroke: var(--primary);
+    }
+  }
+}
+
+li:has(.activeNavLink)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  background-color: var(--primary);
+}
+
+.stats {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
+  background-color: var(--danger);
+  border-radius: var(--radius);
+
+  p {
+    color: #fff;
+    font-weight: var(--font-semibold);
+    font-size: var(--size-very-small);
+  }
+}

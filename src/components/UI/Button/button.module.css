@@ -1,6 +1,7 @@
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
   padding: 4px 8px;
   text-transform: uppercase;
@@ -9,6 +10,7 @@
   font: inherit;
   cursor: pointer;
   font-size: var(--size-small);
+  text-align: center;
 }
 
 .button:disabled {
