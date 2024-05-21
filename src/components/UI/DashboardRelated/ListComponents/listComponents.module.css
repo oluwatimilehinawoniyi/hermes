@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 1rem .25rem;
+  padding-inline: 1rem 0.25rem;
 
   .itemConstant {
     display: flex;
@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 1rem .25rem;
+  padding-inline: 1rem 0.25rem;
   border-radius: var(--radius);
   .navItem {
     display: flex;
@@ -60,9 +60,9 @@
 li:has(.activeNavLink) {
   position: relative;
   .navLinkItem {
-      background-color: var(--line-colour);
+    background-color: var(--line-colour);
     .navItem {
-    font-weight: var(--font-semibold);
+      font-weight: var(--font-semibold);
     }
     svg {
       stroke: var(--primary);

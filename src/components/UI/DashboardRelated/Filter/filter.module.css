@@ -1,0 +1,19 @@
+.filter {
+  background-color: var(--line-colour);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  p {
+    font-size: var(--size-very-small);
+    text-transform: capitalize;
+
+    span {
+      color: var(--secondary);
+      font-weight: var(--font-semibold);
+    }
+  }
+}

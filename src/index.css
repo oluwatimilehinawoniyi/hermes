@@ -36,6 +36,7 @@
 
   /* radius */
   --radius: 4px;
+  --radius-card: 10px;
   --radius-testimony-card: 14px;
 
   /* line height */
@@ -104,6 +105,11 @@ a {
 li {
   list-style: none;
 }
+
+svg {
+  stroke: var(--faded-text-colour);
+}
+
 /* @media (prefers-color-scheme: dark) {
   :root {
     --secondary: #1b2149;
