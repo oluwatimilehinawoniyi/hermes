@@ -1,4 +1,4 @@
-import { Ellipsis } from "lucide-react";
+import { LogOut } from "lucide-react";
 import style from "./profile.module.css";
 
 export default function Profile({ manager }: { manager: string }) {
@@ -17,7 +17,8 @@ export default function Profile({ manager }: { manager: string }) {
         </div>
       </div>
       <div className={style.profileSettings}>
-        <Ellipsis />
+        <LogOut size={18} />
+        {/* <Ellipsis /> */}
       </div>
     </div>
   );
