@@ -1,0 +1,27 @@
+.statsHolder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  height: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: var(--radius-card);
+
+  p {
+    text-transform: capitalize;
+    font-size: var(--size-small);
+  }
+}
+
+.iconHolder {
+  background-color: var(--line-colour);
+  display: grid;
+  place-content: center;
+  padding: 0.5rem;
+  border-radius: 200px;
+
+  svg {
+    stroke: var(--secondary);
+  }
+}
