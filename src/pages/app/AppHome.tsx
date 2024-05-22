@@ -1,6 +1,9 @@
 import style from "@assets/styles/dashboard/app.module.css";
+import DashboardCard from "@components/UI/DashboardRelated/Card/DashboardCard";
 import OverviewStatItem from "@components/UI/DashboardRelated/OverviewStats/OverviewStatItem";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
+import ShowAll from "@components/UI/DashboardRelated/ShowAll/ShowAll";
+import Table from "@components/UI/DashboardRelated/Table/Table";
 import { Container, Package, PackageCheck, Truck } from "lucide-react";
 
 export default function AppHome() {
@@ -43,10 +46,34 @@ export default function AppHome() {
           />
         ))}
       </div>
-      <div className={`${style.cardOne} ${style.card}`}>1</div>
-      <div className={`${style.cardTwo} ${style.card}`}>2</div>
-      <div className={`${style.cardThree} ${style.card}`}>3</div>
-      <div className={`${style.cardFour} ${style.card}`}>4</div>
+      <DashboardCard className={style.cardOne}>
+        <DelayedDelivery />
+      </DashboardCard>
+      <DashboardCard className={style.cardTwo}>2</DashboardCard>
+      <DashboardCard className={style.cardThree}>3</DashboardCard>
+      <DashboardCard className={style.cardFour}>4</DashboardCard>
     </section>
+  );
+}
+
+function DelayedDelivery() {
+  const deliveryData = {
+    headers: ["destination", "truck", "arrival", "delay"],
+    data: [
+      ["valencia-barcelona", "b12345", "07:05 AM", "5:05h"],
+      ["granada-barcelona", "b56789", "10:45 AM", "2:05h"],
+      ["madrid-barcelona", "b12645", "01:55 AM", "0:30h"],
+      ["seville-barcelona", "b37845", "08:56 AM", "1:05h"],
+    ],
+  };
+  return (
+    <div className={style.delayedDelivery}>
+      <div className={style.header}>
+        <h1>Delayed Delivery</h1>
+        <ShowAll to="shipment" />
+      </div>
+
+      <Table headers={deliveryData.headers} data={deliveryData.data} />
+    </div>
   );
 }

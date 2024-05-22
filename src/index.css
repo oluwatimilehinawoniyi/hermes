@@ -9,16 +9,16 @@
   font-family: "Poppins", sans-serif;
 
   /* colours */
-  /* --primary: #7b57df; */
   --primary: #5dc983;
   --secondary: #1b2149;
   --secondar: #0e1126;
   --text-colour: #363636;
   --faded-text-colour: #363636bb;
   --line-colour: rgba(215, 215, 215, 0.479);
-
+  
   /* accent colours */
   /* --success: #5dc983; */
+  --purple: #7b57df;
   --warning: #f2af4c;
   --danger: #eb5769;
 
@@ -36,6 +36,7 @@
 
   /* radius */
   --radius: 4px;
+  --radius-table: 8px;
   --radius-card: 10px;
   --radius-testimony-card: 14px;
 

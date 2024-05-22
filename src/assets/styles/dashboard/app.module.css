@@ -19,12 +19,6 @@
   text-transform: capitalize;
 }
 
-.card {
-  background-color: #fff;
-  border-radius: var(--radius-card);
-  padding: 1rem;
-}
-
 .overviewContainer {
   grid-column: 1/-1;
   grid-row: 3/4;
