@@ -47,20 +47,22 @@ function DateTime() {
       style={{
         color: "var(--secondary)",
         fontSize: "var(--size-small)",
-        width: "175px",
+        width: "200px",
         textAlign: "center",
         display: "flex",
+        textWrap: "nowrap",
+        gap: "0.5rem",
       }}
     >
       <span
         style={{
-          width: "calc(175px / 2)",
+          width: "50%",
           display: "inline-block",
         }}
       >
         {formattedDateTime.dateFormat}
       </span>
-      <span style={{ width: "calc(175px / 2)", display: "inline-block" }}>
+      <span style={{ width: "50%", display: "inline-block" }}>
         {formattedDateTime.timeFormat}
       </span>
     </p>

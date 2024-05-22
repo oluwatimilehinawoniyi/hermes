@@ -19,7 +19,7 @@ export default function SearchBar() {
         <Filter title="department" />
       </div>
 
-      <div>
+      <div className={style.dateTime}>
         <DateTime />
       </div>
     </div>
