@@ -41,12 +41,7 @@
 
 .table tbody {
   font-size: var(--size-small);
-  color: var(--secondary);
-
-  /* fade the text colour of the data underneath 'Arrival' */
-  tr td:nth-of-type(3) {
-    color: var(--faded-text-colour);
-  }
+  color: var(--faded-text-colour);
 
   /* change the colour of the data underneath 'Delay' */
   /* START */

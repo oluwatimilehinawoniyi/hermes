@@ -62,7 +62,7 @@ li:has(.activeNavLink) {
   .navLinkItem {
     background-color: var(--line-colour);
     .navItem {
-      font-weight: var(--font-semibold);
+      font-weight: var(--font-medium);
     }
     svg {
       stroke: var(--primary);

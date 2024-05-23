@@ -1,6 +1,7 @@
 import style from "@assets/styles/dashboard/app.module.css";
 import AvailableTrucks from "@components/layouts/Dashboard/AvailableTrucks/AvailableTrucks";
 import DelayedDelivery from "@components/layouts/Dashboard/DelayedDelivery/DelayedDelivery";
+import Requests from "@components/layouts/Dashboard/Requests/Requests";
 import DashboardCard from "@components/UI/DashboardRelated/Card/DashboardCard";
 import OverviewStatItem from "@components/UI/DashboardRelated/OverviewStats/OverviewStatItem";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
@@ -58,7 +59,9 @@ export default function AppHome() {
       <DashboardCard className={style.cardThree}>
         <AvailableTrucks />
       </DashboardCard>
-      <DashboardCard className={style.cardFour}>4</DashboardCard>
+      <DashboardCard className={style.cardFour}>
+        <Requests />
+      </DashboardCard>
     </section>
   );
 }
