@@ -5,12 +5,14 @@ interface ItemProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   isLink?: boolean;
   stat: number;
+  colour: string;
 }
 
 export default function OverviewStatItem({
   title,
   stat,
   icon: Icon,
+  colour,
 }: ItemProps): React.JSX.Element {
   return (
     <div className={style.statsHolder}>
@@ -19,7 +21,7 @@ export default function OverviewStatItem({
         <h1>{stat}</h1>
       </div>
       <div className={style.iconHolder}>
-        <Icon width={24} />
+        <Icon width={24} fill={colour} />
       </div>
     </div>
   );

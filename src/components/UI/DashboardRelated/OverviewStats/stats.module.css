@@ -21,7 +21,8 @@
   padding: 0.5rem;
   border-radius: 200px;
 
-  svg {
+  /* svg {
     stroke: var(--secondary);
-  }
+    stroke: var(--primary);
+  } */
 }

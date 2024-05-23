@@ -1,0 +1,67 @@
+.availableTrucks {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
+
+  p {
+    font-size: var(--size-small);
+  }
+}
+
+.availableTrucks .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: var(--size-regular);
+    color: var(--secondary);
+  }
+}
+
+.availableTruck {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 0.7rem;
+}
+
+.availableTruck:not(:last-of-type) {
+  border-bottom: 1px solid var(--line-colour);
+}
+
+.truckId {
+  h2 {
+    font-size: var(--size-regular);
+    margin-bottom: 0.5rem;
+  }
+}
+
+.truckCapacity {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+
+  p {
+    margin-bottom: 1.2rem;
+    font-size: var(--size-very-small);
+  }
+  span {
+    font-weight: var(--font-semibold);
+  }
+}
+
+.progressTrack {
+  width: 150px;
+  height: 8px;
+  overflow: hidden;
+  background-color: var(--line-colour);
+  border-radius: 20px;
+}
+
+.progressBar {
+  border-radius: 10px;
+  height: 100%;
+}
