@@ -1,0 +1,143 @@
+/* Dynamic Page Styles */
+
+.dynamicPage {
+  padding: 1rem;
+  position: relative;
+  height: 100vh;
+  overflow-y: hidden;
+
+  .header {
+    height: 23%;
+  }
+
+  .body {
+    height: 77%;
+    overflow-y: hidden;
+    border-radius: var(--radius-card);
+    overflow-y: auto;
+  }
+}
+
+/* Dynamic Header Styles */
+
+.dynamicHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dynamicHeader > div:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-block: 1rem;
+
+  h1 {
+    text-transform: capitalize;
+  }
+}
+
+.filterBtns {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 4px 8px;
+    text-transform: capitalize;
+    border: none;
+    border-radius: var(--radius);
+    font: inherit;
+    cursor: pointer;
+    font-size: var(--size-very-small);
+    text-align: center;
+  }
+}
+
+.activeBtn {
+  color: #fff;
+  background-color: var(--primary);
+}
+.inActiveBtn {
+  color: var(--primary);
+  background-color: rgba(93, 201, 131, 0.1);
+}
+
+.sortBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Dynamic Table Styles */
+
+.dynamicTable .gridTable {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  gap: 0px;
+  position: relative;
+}
+
+.dynamicTable .gridHeader {
+  position: sticky;
+  top: 0px;
+  border-bottom: 2px solid var(--line-colour);
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: .5rem;
+  background-color: #fff;
+  padding-inline: 1rem;
+
+  .gridHeaderItem {
+    font-size: var(--size-very-small);
+    font-weight: var(--font-regular);
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+}
+
+.dynamicTable .gridBody {
+  display: grid;
+  grid-template-rows: auto;
+  background-color: #fff;
+}
+
+.gridRow {
+  text-transform: capitalize;
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: var(--size-very-small);
+  padding-inline: 1rem;
+  cursor: pointer;
+
+  p {
+    color: var(--secondary);
+  }
+
+  .gridCell {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-block: 0.7rem;
+  }
+}
+
+.gridRow:not(:last-of-type) {
+  border-bottom: 1px solid var(--line-colour);
+}
+
+.lastCell {
+  border-right: none;
+}
+
+.gridRow:hover {
+  background-color: var(--line-colour);
+}

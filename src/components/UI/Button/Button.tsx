@@ -6,23 +6,28 @@ export default function Button({
   disabled = false,
   message,
   width,
+  color = "#fff",
   backgroundColor = "var(--primary)",
+  fn,
 }: {
   children: ReactNode;
   disabled?: boolean;
   message?: string;
   backgroundColor?: string;
   width?: string;
+  color?: string;
+  fn?: () => void;
 }) {
   return (
     <>
       <button
         className={styles.button}
         disabled={disabled}
+        onClick={fn}
         style={{
           width: width,
           backgroundColor: backgroundColor,
-          color: backgroundColor === "white" ? "var(--primary)" : "white",
+          color: backgroundColor === "white" ? "var(--primary)" : color,
           fontWeight: "var(--font-medium)",
         }}
       >

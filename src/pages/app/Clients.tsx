@@ -1,6 +1,11 @@
+import DynamicPage, {
+  DynamicTable,
+} from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 
 export default function Clients() {
   return (
-    <div>Clients</div>
-  )
+    <DynamicPage title="clients">
+      <DynamicTable />
+    </DynamicPage>
+  );
 }

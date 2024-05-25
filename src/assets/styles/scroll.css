@@ -1,58 +1,35 @@
-/* Chrome, Edge, and Safari */
-::-webkit-scrollbar {
-  width: 12px;
-}
+* {
+  /* Chrome, Edge, and Safari */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
+  ::-webkit-scrollbar-track {
+    background: rgba(93, 201, 131, 0.2);
+    border-radius: 10px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
 
-/* Firefox */
-html {
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: var(--primary) #f1f1f1; /* thumb and track color */
-}
+  /* Firefox */
+  html {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--primary) #f1f1f1; /* thumb and track color */
+  }
 
-/* Internet Explorer and Edge (legacy) */
-body {
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-}
+  /* Internet Explorer and Edge (legacy) */
+  body {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  }
 
-body::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for IE and Edge */
-}
-
-/* General styles to apply custom scrollbar */
-.custom-scrollbar {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 12px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for IE and Edge */
+  }
 }
