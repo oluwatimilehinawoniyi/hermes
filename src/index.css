@@ -17,10 +17,10 @@
   --line-colour: rgba(215, 215, 215, 0.479);
   
   /* accent colours */
-  /* --success: #5dc983; */
   --purple: #7b57df;
   --warning: #f2af4c;
   --danger: #eb5769;
+  /* --success: #5dc983; */
 
   /* font weights */
   --font-regular: 400;

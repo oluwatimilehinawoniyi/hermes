@@ -88,8 +88,8 @@
   border-bottom: 2px solid var(--line-colour);
 
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: .5rem;
+  /* grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  gap: 0.5rem;
   background-color: #fff;
   padding-inline: 1rem;
 
@@ -112,8 +112,8 @@
 .gridRow {
   text-transform: capitalize;
   display: grid;
-  gap: .5rem;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  /* grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   font-size: var(--size-very-small);
   padding-inline: 1rem;
   cursor: pointer;
@@ -140,4 +140,37 @@
 
 .gridRow:hover {
   background-color: var(--line-colour);
+}
+
+/* status */
+
+/* --purple: #7b57df;
+--warning: #f2af4c;
+--danger: #eb5769;
+--success: #5dc983; */
+
+.gridRow {
+  .delayedStatus,
+  .onWayStatus,
+  .arrivedStatus {
+    padding-block: 0.2rem;
+    width: 80px;
+    border-radius: var(--radius);
+    display: grid;
+    place-content: center;
+  }
+
+  .delayedStatus {
+    background-color: rgb(235, 87, 105, 0.2);
+    color: var(--danger);
+  }
+
+  .onWayStatus {
+    background-color: rgb(242, 175, 76, 0.2);
+    color: var(--warning);
+  }
+  .arrivedStatus {
+    background-color: rgb(93, 201, 131, 0.2);
+    color: var(--primary);
+  }
 }

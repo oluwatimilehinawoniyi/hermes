@@ -29,9 +29,41 @@ interface ParcelBodyType {
   status: "delivered" | "on way" | "delayed" | "not assigned";
 }
 
+interface ClientBodyType {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  status: "active" | "inactive";
+}
+
+interface ClientDataType {
+  header: string[];
+  body: ClientBodyType[];
+}
+
+interface RequestBodyType {
+  id: string;
+//   "client id": string;
+  weight: number;
+  destination: string;
+  "request date": string;
+  status: "pending" | "accepted";
+}
+
+interface RequestDataType {
+  header: string[];
+  body: RequestBodyType[];
+}
+
 export type {
   ShipmentDataType,
   ParcelDataType,
   ParcelBodyType,
   ShipmentBodyType,
+  ClientDataType,
+  ClientBodyType,
+  RequestDataType,
+  RequestBodyType,
 };

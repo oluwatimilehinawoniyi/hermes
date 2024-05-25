@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth, Dashboard, Home, Login, SignUp } from "@pages/index";
-import { AppHome, Branches, Clients, Parcels, Shipment } from "@pages/app";
+import { AppHome, Requests, Clients, Parcels, Shipment } from "@pages/app";
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
 
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<AppHome />} />
-          <Route path="branches" element={<Branches />} />
+          <Route path="requests" element={<Requests />} />
           <Route path="clients" element={<Clients />} />
           <Route path="parcels" element={<Parcels />} />
           <Route path="shipment" element={<Shipment />} />

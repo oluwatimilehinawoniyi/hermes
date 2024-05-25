@@ -9,9 +9,8 @@ import style from "./sidebar.module.css";
 import {
   Bell,
   Box,
-  Flag,
+  ClipboardList,
   LayoutGrid,
-  MessageSquareWarning,
   Truck,
   User,
 } from "lucide-react";
@@ -21,7 +20,7 @@ export default function Sidebar() {
     { item: "dashboard", icon: LayoutGrid, hasStat: false },
     { item: "shipment", icon: Truck, hasStat: false },
     { item: "parcels", icon: Box, stat: 10, hasStat: true },
-    { item: "branches", icon: Flag, hasStat: false },
+    { item: "requests", icon: ClipboardList, hasStat: true, stat: 10 },
     { item: "clients", icon: User, hasStat: false },
   ];
 
@@ -39,13 +38,6 @@ export default function Sidebar() {
           <Logo isLink={false} width="100%" />
         </div>
         <ListItemHolder styles={{ paddingRight: "0.5rem" }}>
-          <ListItem
-            isLink={false}
-            title="requests"
-            icon={MessageSquareWarning}
-            hasStats={true}
-            stats={10}
-          />
           <ListItem
             isLink={false}
             title="notifications"

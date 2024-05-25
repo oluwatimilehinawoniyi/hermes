@@ -39,7 +39,12 @@ export default function Shipment() {
 
   return (
     <DynamicPage title="shipments">
-      <DynamicTable<ShipmentBodyType> header={header} body={body} />
+      <DynamicTable<ShipmentBodyType>
+        
+        header={header}
+        body={body}
+        gridColumns="1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+      />
     </DynamicPage>
   );
 }

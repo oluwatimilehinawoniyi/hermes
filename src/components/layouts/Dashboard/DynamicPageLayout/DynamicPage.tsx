@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 import { ReactNode, useState } from "react";
 import style from "./dynamic.module.css";
@@ -139,12 +140,22 @@ function FilterButton({
 interface DynamicTableProps<T> {
   header: string[];
   body: T[];
+  gridColumns: string;
 }
-export function DynamicTable<T>({ header, body }: DynamicTableProps<T>) {
+export function DynamicTable<T>({
+  header,
+  body,
+  gridColumns,
+}: DynamicTableProps<T>) {
   return (
     <section className={style.dynamicTable}>
       <div className={style.gridTable}>
-        <div className={style.gridHeader}>
+        <div
+          className={style.gridHeader}
+          style={{
+            gridTemplateColumns: gridColumns,
+          }}
+        >
           {header.map((item, index) => (
             <div
               key={index}
@@ -156,7 +167,13 @@ export function DynamicTable<T>({ header, body }: DynamicTableProps<T>) {
         </div>
         <div className={style.gridBody}>
           {body.map((row, rowIndex) => (
-            <div key={rowIndex} className={style.gridRow}>
+            <div
+              key={rowIndex}
+              className={style.gridRow}
+              style={{
+                gridTemplateColumns: gridColumns,
+              }}
+            >
               {header.map((key, cellIndex) => (
                 <div
                   key={cellIndex}
@@ -164,9 +181,27 @@ export function DynamicTable<T>({ header, body }: DynamicTableProps<T>) {
                     cellIndex === header.length - 1 ? style.lastCell : ""
                   }`}
                 >
-                  {/*eslint-disable-next-line @typescript-eslint/no-explicit-any
-                   */}
-                  <p>{(row as any)[key]}</p>
+                  <p
+                    className={`${
+                      key === "status" &&
+                      ((row as any)[key] === "delayed" ||
+                        (row as any)[key] === "inactive")
+                        ? style.delayedStatus
+                        : key === "status" &&
+                          ((row as any)[key] === "on way" ||
+                            (row as any)[key] === "pending")
+                        ? style.onWayStatus
+                        : key === "status" &&
+                          ((row as any)[key] === "arrived" ||
+                            (row as any)[key] === "delivered" ||
+                            (row as any)[key] === "accepted" ||
+                            (row as any)[key] === "active")
+                        ? style.arrivedStatus
+                        : ""
+                    }`}
+                  >
+                    {(row as any)[key]}
+                  </p>
                 </div>
               ))}
             </div>

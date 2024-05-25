@@ -7,7 +7,7 @@ import data from "@data/parcelData.json";
 import { ParcelBodyType } from "src/types";
 
 // Function to validate and transform each parcel entry
-function transformShipmentData(rawData: any[]): ParcelBodyType[] {
+function transformParcelData(rawData: any[]): ParcelBodyType[] {
   return rawData.map((item) => ({
     destination: item.destination,
     "tracking id": item["tracking id"],
@@ -26,19 +26,22 @@ function validateStatus(
   const validStatuses: ("delivered" | "on way" | "delayed" | "not assigned")[] =
     ["delivered", "on way", "delayed", "not assigned"];
   if (!validStatuses.includes(status as any)) {
-    console.log("Received invalid status:", status);  // Log invalid status
     throw new Error(`Invalid status value: ${status}`);
   }
   return status as "delivered" | "on way" | "delayed" | "not assigned";
 }
 
-const transformedData = transformShipmentData(data.body);
+const transformedData = transformParcelData(data.body);
 
 export default function Parcels() {
   const { header, body } = { header: data.header, body: transformedData };
   return (
     <DynamicPage title="parcels">
-      <DynamicTable<ParcelBodyType> header={header} body={body} />
+      <DynamicTable<ParcelBodyType>
+        header={header}
+        body={body}
+        gridColumns="1fr 1fr 1fr 1.5fr 1.5fr 1fr 1fr"
+      />
     </DynamicPage>
   );
 }
