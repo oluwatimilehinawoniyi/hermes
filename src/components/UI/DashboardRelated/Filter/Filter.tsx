@@ -1,6 +1,51 @@
-import { ArrowDownAZ, ChevronDown } from "lucide-react";
+import { ArrowDownAZ, ChevronUp } from "lucide-react";
 import style from "./filter.module.css";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const parentVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0,
+  },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      when: "beforeChildren",
+    },
+  },
+  exit: {
+    scale: 0,
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.1,
+      staggerDirection: -1, 
+      when: "afterChildren",
+    },
+  },
+};
+
+const childVariants = {
+  initial: {
+    y: -20,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      damping: 20, 
+      stiffness: 100,
+    },
+  },
+  exit: {
+    y: 20, // move up a bit on exit
+    opacity: 0,
+  },
+};
 
 export default function Filter({
   options,
@@ -43,27 +88,40 @@ export default function Filter({
           <p>
             {options.find((option) => option.value === selectedOption)?.label}
           </p>
-          <ChevronDown size={18} />
+          <ChevronUp
+            size={18}
+            style={{
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
         </div>
       </div>
       <div className={style.sort}>
         <ArrowDownAZ size={18} />
         {/* <ArrowDownZA size={18} /> */}
       </div>
-
-      {isOpen && (
-        <div className={style.selectOptions}>
-          {options.map((option) => (
-            <div
-              key={option.value}
-              className={style.selectOption}
-              onClick={() => handleSelect(option.value)}
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={parentVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className={style.selectOptions}
+          >
+            {options.map((option) => (
+              <motion.div
+                variants={childVariants}
+                key={option.value}
+                className={style.selectOption}
+                onClick={() => handleSelect(option.value)}
+              >
+                {option.label}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

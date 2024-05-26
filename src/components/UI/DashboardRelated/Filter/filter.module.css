@@ -21,12 +21,20 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius);
+  padding: 0.1rem 0.5rem;
+
+  svg {
+    transition: all 0.25s linear;
+  }
 }
 
 .activeTag p {
   cursor: pointer;
   color: var(--secondary);
-  font-weight: var(--font-semibold);
+  font-weight: var(--font-medium);
 }
 
 .selectOptions {

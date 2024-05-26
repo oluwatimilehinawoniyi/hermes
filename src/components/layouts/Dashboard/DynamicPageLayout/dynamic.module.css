@@ -55,6 +55,7 @@
     cursor: pointer;
     font-size: var(--size-very-small);
     text-align: center;
+    transition: all 0.25s linear;
   }
 }
 
@@ -88,7 +89,6 @@
   border-bottom: 2px solid var(--line-colour);
 
   display: grid;
-  /* grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   gap: 0.5rem;
   background-color: #fff;
   padding-inline: 1rem;
@@ -113,10 +113,10 @@
   text-transform: capitalize;
   display: grid;
   gap: 0.5rem;
-  /* grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
   font-size: var(--size-very-small);
   padding-inline: 1rem;
   cursor: pointer;
+  transition: background-color 0.25s linear;
 
   p {
     color: var(--secondary);
