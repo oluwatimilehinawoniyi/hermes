@@ -2,30 +2,21 @@
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 import { ReactNode, useState } from "react";
 import style from "./dynamic.module.css";
-import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 
 export default function DynamicPage({
-  children,
-  title,
+  tableComponent,
+  headerFilters,
 }: {
-  children: ReactNode;
-  title: string;
+  tableComponent: ReactNode;
+  headerFilters: ReactNode;
 }) {
-  const filterBtns = [
-    { item: "arrival", length: 20 },
-    { item: "available", length: 5 },
-    { item: "departure", length: 35 },
-  ];
   return (
     <section className={style.dynamicPage}>
       <div className={style.header}>
         <SearchBar />
-        <DynamicHeader title={title} dataFilters={filterBtns}>
-          <Filter title="sort by" />
-          <Filter title="arrival date" />
-        </DynamicHeader>
+        {headerFilters}
       </div>
-      <section className={style.body}>{children}</section>
+      <section className={style.body}>{tableComponent}</section>
     </section>
   );
 }
@@ -52,18 +43,20 @@ export function DynamicHeader({
     <header className={style.dynamicHeader}>
       <div>
         <h1>{title}</h1>
-        <FilterButtonsBox>
-          {dataFilters?.map(({ item, length }, index) => (
-            <FilterButton
-              key={index}
-              index={index}
-              item={item}
-              length={length}
-              activeFilter={activeFilter}
-              handleClickEvent={handleBtnClickEvent}
-            />
-          ))}
-        </FilterButtonsBox>
+        {dataFilters && (
+          <FilterButtonsBox>
+            {dataFilters?.map(({ item, length }, index) => (
+              <FilterButton
+                key={index}
+                index={index}
+                item={item}
+                length={length}
+                activeFilter={activeFilter}
+                handleClickEvent={handleBtnClickEvent}
+              />
+            ))}
+          </FilterButtonsBox>
+        )}
       </div>
       <div className={style.sortBox}>{children}</div>
     </header>
@@ -96,46 +89,6 @@ function FilterButton({
     >{`${item} (${length})`}</button>
   );
 }
-
-// interface DynamicTableProps {
-//   header: string[];
-//   body: (string | number)[][];
-// }
-
-// export function DynamicTable({ header, body }: DynamicTableProps) {
-//   return (
-//     <section className={style.dynamicTable}>
-//       <div className={style.gridTable}>
-//         <div className={style.gridHeader}>
-//           {header.map((item, index) => (
-//             <div
-//               key={index}
-//               className={`${style.gridHeaderItem} ${style.gridCell} `}
-//             >
-//               <p>{item}</p>
-//             </div>
-//           ))}
-//         </div>
-//         <div className={style.gridBody}>
-//           {body.map((row, rowIndex) => (
-//             <div key={rowIndex} className={style.gridRow}>
-//               {row.map((cell, cellIndex) => (
-//                 <div
-//                   key={cellIndex}
-//                   className={`${style.gridCell} ${
-//                     cellIndex === row.length - 1 ? style.lastCell : ""
-//                   }`}
-//                 >
-//                   <p>{cell}</p>
-//                 </div>
-//               ))}
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
 
 interface DynamicTableProps<T> {
   header: string[];

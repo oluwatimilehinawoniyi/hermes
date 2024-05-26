@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DynamicPage, {
+  DynamicHeader,
   DynamicTable,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
+import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 
 import data from "@data/requestData.json";
 import { RequestBodyType } from "src/types";
@@ -41,13 +43,31 @@ export default function Requests() {
   //   console.log("Accepted request:", requestId);
   // };
 
+  const filterBtns = [
+    { item: "accepted", length: 5 },
+    { item: "pending", length: 35 },
+  ];
+
   return (
-    <DynamicPage title="Requests">
-      <DynamicTable<RequestBodyType>
-        header={header}
-        body={body}
-        gridColumns="1fr 2fr 1fr 1.5fr 1fr"
-      />
-    </DynamicPage>
+    <DynamicPage
+      headerFilters={
+        <DynamicHeader title="requests" dataFilters={filterBtns}>
+          <Filter
+            options={[
+              { value: "weigth", label: "weigth" },
+              { value: "status", label: "status" },
+              { value: "date", label: "date" },
+            ]}
+          />
+        </DynamicHeader>
+      }
+      tableComponent={
+        <DynamicTable<RequestBodyType>
+          header={header}
+          body={body}
+          gridColumns="1fr 2fr 1fr 1.5fr 1fr"
+        />
+      }
+    />
   );
 }

@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DynamicPage, {
+  DynamicHeader,
   DynamicTable,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
+import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 import data from "@data/parcelData.json";
 
 import { ParcelBodyType } from "src/types";
@@ -35,13 +37,33 @@ const transformedData = transformParcelData(data.body);
 
 export default function Parcels() {
   const { header, body } = { header: data.header, body: transformedData };
+
+  const filterBtns = [
+    { item: "delivered", length: 20 },
+    { item: "on way", length: 5 },
+    { item: "delyed", length: 35 },
+    { item: "not assigned", length: 35 },
+  ];
   return (
-    <DynamicPage title="parcels">
-      <DynamicTable<ParcelBodyType>
-        header={header}
-        body={body}
-        gridColumns="1fr 1fr 1fr 1.5fr 1.5fr 1fr 1fr"
-      />
-    </DynamicPage>
+    <DynamicPage
+      headerFilters={
+        <DynamicHeader title="parcels" dataFilters={filterBtns}>
+          <Filter
+            options={[
+              { value: "weigth", label: "weigth" },
+              { value: "status", label: "status" },
+              { value: "destination", label: "destination" },
+            ]}
+          />
+        </DynamicHeader>
+      }
+      tableComponent={
+        <DynamicTable<ParcelBodyType>
+          header={header}
+          body={body}
+          gridColumns="1fr 1fr 1fr 1.5fr 1.5fr 1fr 1fr"
+        />
+      }
+    />
   );
 }

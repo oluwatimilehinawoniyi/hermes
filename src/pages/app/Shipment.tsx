@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DynamicPage, {
+  DynamicHeader,
   DynamicTable,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
+import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 import data from "@data/shipmentData.json";
 import { ShipmentBodyType } from "src/types";
 
@@ -37,14 +39,33 @@ const transformedData = transformShipmentData(data.body);
 export default function Shipment() {
   const { header, body } = { header: data.header, body: transformedData };
 
+  const filterBtns = [
+    { item: "arrival", length: 20 },
+    { item: "available", length: 5 },
+    { item: "departure", length: 35 },
+  ];
+
   return (
-    <DynamicPage title="shipments">
-      <DynamicTable<ShipmentBodyType>
-        
-        header={header}
-        body={body}
-        gridColumns="1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
-      />
-    </DynamicPage>
+    <DynamicPage
+      headerFilters={
+        <DynamicHeader title="shipments" dataFilters={filterBtns}>
+          <Filter
+            options={[
+              { value: "weigth", label: "weigth" },
+              { value: "status", label: "status" },
+              { value: "arrival date", label: "arrival date" },
+              { value: "departure date", label: "departure date" },
+            ]}
+          />
+        </DynamicHeader>
+      }
+      tableComponent={
+        <DynamicTable<ShipmentBodyType>
+          header={header}
+          body={body}
+          gridColumns="1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+        />
+      }
+    />
   );
 }
