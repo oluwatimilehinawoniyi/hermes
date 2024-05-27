@@ -82,7 +82,7 @@ export default function Parcels() {
           sortChildren={
             <Filter
               options={[
-                { value: "weigth", label: "weight" },
+                { value: "weight", label: "weight" },
                 { value: "status", label: "status" },
               ]}
               onOptionChange={handleSortOptionChange}
