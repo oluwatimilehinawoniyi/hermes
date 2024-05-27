@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import style from "./dynamic.module.css";
 
 export default function DynamicPage({
@@ -22,48 +22,29 @@ export default function DynamicPage({
 }
 
 interface DynamicHeaderProps {
-  children: ReactNode;
+  filterChildren: ReactNode;
+  sortChildren: ReactNode;
   title: string;
-  dataFilters?: { item: string; length: number; fn?: () => void }[];
 }
 
 export function DynamicHeader({
-  children,
+  sortChildren,
+  filterChildren,
   title,
-  dataFilters,
-}: DynamicHeaderProps) {
-  const [activeFilter, setActiveFilter] = useState(0);
-
-  function handleBtnClickEvent(index: number) {
-    setActiveFilter(index);
-    dataFilters?.[index].fn?.();
-  }
-
+}:
+DynamicHeaderProps) {
   return (
     <header className={style.dynamicHeader}>
       <div>
         <h1>{title}</h1>
-        {dataFilters && (
-          <FilterButtonsBox>
-            {dataFilters?.map(({ item, length }, index) => (
-              <FilterButton
-                key={index}
-                index={index}
-                item={item}
-                length={length}
-                activeFilter={activeFilter}
-                handleClickEvent={handleBtnClickEvent}
-              />
-            ))}
-          </FilterButtonsBox>
-        )}
+        {filterChildren}
       </div>
-      <div className={style.sortBox}>{children}</div>
+      <div className={style.sortBox}>{sortChildren}</div>
     </header>
   );
 }
 
-function FilterButtonsBox({ children }: { children: ReactNode }) {
+export function FilterButtonsBox({ children }: { children: ReactNode }) {
   return <div className={style.filterBtns}>{children}</div>;
 }
 
@@ -75,7 +56,7 @@ interface DynamicHeaderFilterProps {
   handleClickEvent?: (index: number) => void;
 }
 
-function FilterButton({
+export function FilterButton({
   activeFilter,
   index,
   item,
