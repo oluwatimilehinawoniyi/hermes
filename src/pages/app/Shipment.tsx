@@ -64,7 +64,7 @@ export default function Shipment() {
           sortChildren={
             <Filter
               options={[
-                { value: "weigth", label: "weigth" },
+                { value: "weigth", label: "weight" },
                 { value: "status", label: "status" },
                 { value: "arrival date", label: "arrival date" },
                 { value: "departure date", label: "departure date" },

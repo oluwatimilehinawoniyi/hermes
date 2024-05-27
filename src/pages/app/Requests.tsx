@@ -75,7 +75,7 @@ export default function Requests() {
           sortChildren={
             <Filter
               options={[
-                { value: "weigth", label: "weigth" },
+                { value: "weigth", label: "weight" },
                 { value: "status", label: "status" },
                 { value: "date", label: "date" },
               ]}
