@@ -2,65 +2,80 @@
 import DynamicPage, {
   DynamicHeader,
   DynamicTable,
+  FilterButton,
+  FilterButtonsBox,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 import data from "@data/parcelData.json";
+import { transformData, validateStatus } from "@utils/TransformData";
+import { useState } from "react";
 
 import { ParcelBodyType } from "src/types";
 
-// Function to validate and transform each parcel entry
-function transformParcelData(rawData: any[]): ParcelBodyType[] {
-  return rawData.map((item) => ({
-    destination: item.destination,
-    "tracking id": item["tracking id"],
-    "client id": item["client id"],
-    weight: item.weight,
-    status: validateStatus(item.status),
-    "departure time": item["departure time"],
-    "arrival time": item["arrival time"],
-  }));
-}
+const validParcelStatuses: ReadonlyArray<
+  "delivered" | "on way" | "delayed" | "not assigned"
+> = ["delivered", "on way", "delayed", "not assigned"];
 
-// Helper function to ensure status is one of the allowed values
-function validateStatus(
-  status: string
-): "delivered" | "on way" | "delayed" | "not assigned" {
-  const validStatuses: ("delivered" | "on way" | "delayed" | "not assigned")[] =
-    ["delivered", "on way", "delayed", "not assigned"];
-  if (!validStatuses.includes(status as any)) {
-    throw new Error(`Invalid status value: ${status}`);
-  }
-  return status as "delivered" | "on way" | "delayed" | "not assigned";
-}
-
-const transformedData = transformParcelData(data.body);
+const transformedData = transformData<ParcelBodyType>(data.body, (status) =>
+  validateStatus(status, validParcelStatuses)
+);
 
 export default function Parcels() {
   const { header, body } = { header: data.header, body: transformedData };
 
   const filterBtns = [
-    { item: "delivered", length: 20 },
-    { item: "on way", length: 5 },
-    { item: "delyed", length: 35 },
-    { item: "not assigned", length: 35 },
+    { item: "all", length: body.length },
+    ...["delivered", "on way", "delayed", "not assigned"].map((status) => ({
+      item: status,
+      length: body.filter((item) => item.status === status).length,
+    })),
   ];
+
+  const [filter, setFilter] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<number>(0);
+
+  function handleBtnClickEvent(index: number) {
+    setActiveFilter(index);
+    setFilter(filterBtns[index].item);
+  }
+
+  const filteredData =
+    filter === "all" ? body : body.filter((item) => item.status === filter);
+
   return (
     <DynamicPage
       headerFilters={
-        <DynamicHeader title="parcels" dataFilters={filterBtns}>
-          <Filter
-            options={[
-              { value: "weigth", label: "weigth" },
-              { value: "status", label: "status" },
-              { value: "destination", label: "destination" },
-            ]}
-          />
-        </DynamicHeader>
+        <DynamicHeader
+          title="parcels"
+          filterChildren={
+            <FilterButtonsBox>
+              {filterBtns.map(({ item, length }, index) => (
+                <FilterButton
+                  key={index}
+                  index={index}
+                  item={item}
+                  length={length}
+                  activeFilter={activeFilter}
+                  handleClickEvent={handleBtnClickEvent}
+                />
+              ))}
+            </FilterButtonsBox>
+          }
+          sortChildren={
+            <Filter
+              options={[
+                { value: "weigth", label: "weigth" },
+                { value: "status", label: "status" },
+                { value: "destination", label: "destination" },
+              ]}
+            />
+          }
+        />
       }
       tableComponent={
         <DynamicTable<ParcelBodyType>
           header={header}
-          body={body}
+          body={filteredData}
           gridColumns="1fr 1fr 1fr 1.5fr 1.5fr 1fr 1fr"
         />
       }
