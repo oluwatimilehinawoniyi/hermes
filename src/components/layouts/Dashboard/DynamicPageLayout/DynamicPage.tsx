@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 import { ReactNode } from "react";
 import style from "./dynamic.module.css";
 
 export default function DynamicPage({
   tableComponent,
   headerFilters,
+  searchBarComponent,
 }: {
+  searchBarComponent: ReactNode;
   tableComponent: ReactNode;
   headerFilters: ReactNode;
 }) {
   return (
     <section className={style.dynamicPage}>
       <div className={style.header}>
-        <SearchBar />
+        {searchBarComponent}
         {headerFilters}
       </div>
       <section className={style.body}>{tableComponent}</section>
@@ -31,8 +32,7 @@ export function DynamicHeader({
   sortChildren,
   filterChildren,
   title,
-}:
-DynamicHeaderProps) {
+}: DynamicHeaderProps) {
   return (
     <header className={style.dynamicHeader}>
       <div>

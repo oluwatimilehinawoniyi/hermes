@@ -38,7 +38,7 @@ export default function AppHome() {
   return (
     <section className={style.app}>
       <div className={style.searchBox}>
-        <SearchBar />
+        <SearchBar placeHolder="Search by tracking number, truck number, shipment id or client id" />
       </div>
       <div className={style.header}>
         <h1>overview</h1>

@@ -6,6 +6,7 @@ import DynamicPage, {
   FilterButtonsBox,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import Filter from "@components/UI/DashboardRelated/Filter/Filter";
+import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 
 import data from "@data/requestData.json";
 import { transformData, validateStatus } from "@utils/TransformData";
@@ -61,6 +62,9 @@ export default function Requests() {
 
   return (
     <DynamicPage
+      searchBarComponent={
+        <SearchBar placeHolder="Search by request id" />
+      }
       headerFilters={
         <DynamicHeader
           title="requests"

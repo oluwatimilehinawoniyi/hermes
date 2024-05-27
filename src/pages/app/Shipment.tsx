@@ -5,6 +5,7 @@ import DynamicPage, {
   FilterButtonsBox,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import Filter from "@components/UI/DashboardRelated/Filter/Filter";
+import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 import data from "@data/shipmentData.json";
 import { transformData, validateStatus } from "@utils/TransformData";
 import { useState } from "react";
@@ -58,6 +59,9 @@ export default function Shipment() {
 
   return (
     <DynamicPage
+      searchBarComponent={
+        <SearchBar placeHolder="Search by truck number or shipment id" />
+      }
       headerFilters={
         <DynamicHeader
           title="shipments"
