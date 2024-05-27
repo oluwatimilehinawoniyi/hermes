@@ -1,0 +1,25 @@
+.truck {
+  stroke-width: 0px;
+}
+
+.door,
+.cargoBox {
+  fill: #e2e2e2;
+}
+
+.headlights {
+  fill: #e5484874;
+}
+
+.window {
+  fill: #c0c0c07d;
+}
+
+.engine,
+.doorKnob {
+  fill: #a0a0a0;
+}
+
+.wheels {
+  fill: #6d6d6d;
+}

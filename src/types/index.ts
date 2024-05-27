@@ -12,6 +12,7 @@ interface ShipmentBodyType {
   "departure date": string;
   "arrival date": string;
   "time delay": string;
+  available: boolean;
 }
 
 interface ParcelDataType {
