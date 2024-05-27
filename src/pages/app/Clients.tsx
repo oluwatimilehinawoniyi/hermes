@@ -31,6 +31,11 @@ export default function Clients() {
 
   const [filter, setFilter] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<number>(0);
+  const [sortOption, setSortOption] = useState<string>("");
+
+  function handleSortOptionChange(value: string) {
+    setSortOption(value);
+  }
 
   function handleBtnClickEvent(index: number) {
     setActiveFilter(index);
@@ -39,6 +44,13 @@ export default function Clients() {
 
   const filteredData =
     filter === "all" ? body : body.filter((item) => item.status === filter);
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (sortOption === "status") {
+      return a.status.localeCompare(b.status);
+    }
+    return 0;
+  });
 
   return (
     <DynamicPage
@@ -60,14 +72,17 @@ export default function Clients() {
             </FilterButtonsBox>
           }
           sortChildren={
-            <Filter options={[{ value: "status", label: "status" }]} />
+            <Filter
+              options={[{ value: "status", label: "status" }]}
+              onOptionChange={handleSortOptionChange}
+            />
           }
         />
       }
       tableComponent={
         <DynamicTable<ClientBodyType>
           header={header}
-          body={filteredData}
+          body={sortedData}
           gridColumns="1fr 1.5fr 2fr 1.5fr 2fr 1fr"
         />
       }

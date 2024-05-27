@@ -1,4 +1,4 @@
-import { ArrowDownAZ, ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import style from "./filter.module.css";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,7 +21,7 @@ const parentVariants = {
     opacity: 0,
     transition: {
       staggerChildren: 0.1,
-      staggerDirection: -1, 
+      staggerDirection: -1,
       when: "afterChildren",
     },
   },
@@ -37,20 +37,22 @@ const childVariants = {
     opacity: 1,
     transition: {
       type: "spring",
-      damping: 20, 
+      damping: 20,
       stiffness: 100,
     },
   },
   exit: {
-    y: 20, // move up a bit on exit
+    y: 20,
     opacity: 0,
   },
 };
 
 export default function Filter({
   options,
+  onOptionChange,
 }: {
   options: { value: string; label: string }[];
+  onOptionChange: (value: string) => void;
 }) {
   const [selectedOption, setSelectedOption] = useState(options[0].value);
   const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +80,9 @@ export default function Filter({
   const handleSelect = (value: string) => {
     setSelectedOption(value);
     setIsOpen(false);
+    onOptionChange(value);
   };
+
   return (
     <div className={style.filter} ref={dropdownRef}>
       <div className={style.ctrl}>
@@ -95,10 +99,6 @@ export default function Filter({
             }}
           />
         </div>
-      </div>
-      <div className={style.sort}>
-        <ArrowDownAZ size={18} />
-        {/* <ArrowDownZA size={18} /> */}
       </div>
       <AnimatePresence>
         {isOpen && (

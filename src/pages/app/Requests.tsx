@@ -24,16 +24,6 @@ const transformedData = transformData<RequestBodyType>(data.body, (status) =>
 export default function Requests() {
   const { header, body } = { header: data.header, body: transformedData };
 
-  // // Function to handle accepting a request
-  // const handleAcceptRequest = (requestId: string) => {
-  //   // Find the request and update its status
-  //   const updatedBody = body.map((request) =>
-  //     request.id === requestId ? { ...request, status: "accepted" } : request
-  //   );
-  //   // Ideally, this should be saved back to the backend or state management
-  //   console.log("Accepted request:", requestId);
-  // };
-
   const filterBtns = [
     { item: "all", length: body.length },
     ...["accepted", "pending"].map((status) => ({
@@ -44,6 +34,11 @@ export default function Requests() {
 
   const [filter, setFilter] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<number>(0);
+  const [sortOption, setSortOption] = useState<string>("");
+
+  function handleSortOptionChange(value: string) {
+    setSortOption(value);
+  }
 
   function handleBtnClickEvent(index: number) {
     setActiveFilter(index);
@@ -52,6 +47,17 @@ export default function Requests() {
 
   const filteredData =
     filter === "all" ? body : body.filter((item) => item.status === filter);
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (sortOption === "weight") {
+      return a["weight"] - b["weight"];
+    } else if (sortOption === "status") {
+      return a.status.localeCompare(b.status);
+    } else if (sortOption === "request date") {
+      return Date.parse(a["request date"]) - Date.parse(b["request date"]);
+    }
+    return 0;
+  });
 
   return (
     <DynamicPage
@@ -75,10 +81,11 @@ export default function Requests() {
           sortChildren={
             <Filter
               options={[
-                { value: "weigth", label: "weight" },
+                { value: "weight", label: "weight" },
                 { value: "status", label: "status" },
                 { value: "date", label: "date" },
               ]}
+              onOptionChange={handleSortOptionChange}
             />
           }
         />
@@ -86,7 +93,7 @@ export default function Requests() {
       tableComponent={
         <DynamicTable<RequestBodyType>
           header={header}
-          body={filteredData}
+          body={sortedData}
           gridColumns="1fr 2fr 1fr 1.5fr 1fr"
         />
       }

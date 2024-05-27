@@ -33,6 +33,11 @@ export default function Shipment() {
 
   const [filter, setFilter] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<number>(0);
+  const [sortOption, setSortOption] = useState<string>("");
+
+  function handleSortOptionChange(value: string) {
+    setSortOption(value);
+  }
 
   function handleBtnClickEvent(index: number) {
     setActiveFilter(index);
@@ -41,6 +46,15 @@ export default function Shipment() {
 
   const filteredData =
     filter === "all" ? body : body.filter((item) => item.status === filter);
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (sortOption === "weight") {
+      return a["weight (kg)"] - b["weight (kg)"];
+    } else if (sortOption === "status") {
+      return a.status.localeCompare(b.status);
+    }
+    return 0;
+  });
 
   return (
     <DynamicPage
@@ -64,11 +78,10 @@ export default function Shipment() {
           sortChildren={
             <Filter
               options={[
-                { value: "weigth", label: "weight" },
+                { value: "weight", label: "weight" },
                 { value: "status", label: "status" },
-                { value: "arrival date", label: "arrival date" },
-                { value: "departure date", label: "departure date" },
               ]}
+              onOptionChange={handleSortOptionChange}
             />
           }
         />
@@ -76,7 +89,7 @@ export default function Shipment() {
       tableComponent={
         <DynamicTable<ShipmentBodyType>
           header={header}
-          body={filteredData}
+          body={sortedData}
           gridColumns="1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
         />
       }

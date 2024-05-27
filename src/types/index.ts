@@ -45,7 +45,6 @@ interface ClientDataType {
 
 interface RequestBodyType {
   id: string;
-//   "client id": string;
   weight: number;
   destination: string;
   "request date": string;

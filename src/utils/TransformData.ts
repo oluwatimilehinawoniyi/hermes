@@ -8,6 +8,7 @@ function transformData<T>(
 ): T[] {
   return rawData.map((item) => ({
     ...item,
+    "request date": new Date(item["request date"]).toUTCString(),
     status: validateStatus(item.status),
   }));
 }
