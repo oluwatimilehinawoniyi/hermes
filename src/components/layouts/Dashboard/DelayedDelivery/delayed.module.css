@@ -1,0 +1,16 @@
+.delayedDelivery {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delayedDelivery .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: var(--size-regular);
+  }
+}

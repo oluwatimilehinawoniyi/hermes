@@ -1,0 +1,14 @@
+.showAll {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  text-transform: lowercase;
+  font-size: var(--size-very-small);
+  color: var(--purple);
+  font-weight: var(--font-semibold);
+
+  svg {
+    stroke: var(--purple);
+    stroke-width: 2.5px;
+  }
+}

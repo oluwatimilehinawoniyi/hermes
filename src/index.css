@@ -1,25 +1,30 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
   }
+
 
   font-family: "Poppins", sans-serif;
 
   /* colours */
-  /* --primary: #7b57df; */
   --primary: #5dc983;
   --secondary: #1b2149;
   --secondar: #0e1126;
   --text-colour: #363636;
   --faded-text-colour: #363636bb;
-
+  --line-colour: rgba(215, 215, 215, 0.479);
+  
   /* accent colours */
-  /* --success: #5dc983; */
+  --purple: #7b57df;
   --warning: #f2af4c;
   --danger: #eb5769;
+  /* --success: #5dc983; */
 
   /* font weights */
   --font-regular: 400;
@@ -35,6 +40,8 @@
 
   /* radius */
   --radius: 4px;
+  --radius-table: 8px;
+  --radius-card: 10px;
   --radius-testimony-card: 14px;
 
   /* line height */
@@ -98,6 +105,14 @@ video {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+svg {
+  stroke: var(--faded-text-colour);
 }
 
 /* @media (prefers-color-scheme: dark) {
