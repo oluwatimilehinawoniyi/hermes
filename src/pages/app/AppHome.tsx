@@ -44,8 +44,9 @@ export default function AppHome() {
         <h1>overview</h1>
       </div>
       <div className={style.overviewContainer}>
-        {overviewStats.map((stat) => (
+        {overviewStats.map((stat, index) => (
           <OverviewStatItem
+            key={index}
             title={stat.title}
             icon={stat.icon}
             stat={stat.stats}

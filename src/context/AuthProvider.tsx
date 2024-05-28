@@ -5,11 +5,11 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 
 export interface AuthContextType {
   auth: boolean;
-  user: User | null | undefined;
+  user: User | null;
   login: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<any>;
   setAuth: (auth: boolean) => void;
-  setUser: (user: User | null | undefined) => void;
+  setUser: (user: User | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -22,34 +22,37 @@ const login = (email: string, password: string) =>
 const signOut = () => supabase.auth.signOut();
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null | undefined>(null);
-  const [loading, setLoading] = useState<boolean | null>(null);
-
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const getUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      const { user: currentUser } = data;
-      setUser(currentUser ?? null);
-      setAuth(!!currentUser);
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const sessionUser = session?.user ?? null;
+      setUser(sessionUser);
+      setAuth(!!sessionUser);
       setLoading(false);
     };
     getUser();
 
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        setUser(session?.user ?? null);
-        setAuth(true);
-      } else if (event === "SIGNED_OUT") {
-        setUser(null);
-        setAuth(false);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_IN") {
+          setUser(session?.user ?? null);
+          setAuth(true);
+          setLoading(false);
+        } else if (event === "SIGNED_OUT") {
+          setUser(null);
+          setAuth(false);
+        }
       }
-    });
+    );
 
     return () => {
-      data.subscription.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
   }, []);
 

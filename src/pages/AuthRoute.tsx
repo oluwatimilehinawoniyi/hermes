@@ -8,6 +8,6 @@ export default function AuthRoute() {
   return user ? (
     <Outlet />
   ) : (
-    <Navigate to={"/auth"} replace state={{ path: location.pathname }} />
+    <Navigate to={"/auth"} replace state={{ from: location }} />
   );
 }

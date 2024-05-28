@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@hooks/useAuth";
 
 export default function NavigationBar() {
-  const { auth } = useAuth();
+  const { user } = useAuth();
   return (
     <nav className={styles.nav}>
       <div className={styles.logoHolder}>
@@ -14,7 +14,7 @@ export default function NavigationBar() {
       </div>
       <div>
         <Button>
-          {auth ? (
+          {user ? (
             <Link to="/dashboard">go to dashboard</Link>
           ) : (
             <Link to="/auth">get started</Link>
