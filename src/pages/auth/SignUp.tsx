@@ -37,8 +37,8 @@ export default function SignUp() {
           data: {
             fullname,
           },
-          // emailRedirectTo: "http://localhost:5173/",
-          emailRedirectTo: "https://hermeslogistics.vercel.app/dashboard",
+          emailRedirectTo: `${window.location.origin}/auth/confirm`,
+          // emailRedirectTo: "https://hermeslogistics.vercel.app/dashboard",
         },
       });
 

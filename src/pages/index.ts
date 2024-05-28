@@ -4,5 +4,6 @@ import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import Dashboard from "./Dashboard";
 import AuthRoute from "./AuthRoute";
+import EmailConfirmation from "./auth/ConfirmEmail";
 
-export { Dashboard, Login, Home, SignUp, Auth, AuthRoute };
+export { Dashboard, Login, Home, SignUp, Auth, AuthRoute, EmailConfirmation };
