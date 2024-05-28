@@ -21,10 +21,20 @@ const signOut = () => supabase.auth.signOut();
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
+  const [loading, setLoading] = useState<boolean | null>(null);
 
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      const { user: currentUser } = data;
+      setUser(currentUser ?? null);
+      setLoading(false);
+    };
+    getUser();
+
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
         setUser(session?.user);
@@ -42,7 +52,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{ auth, user, login, signOut }}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
