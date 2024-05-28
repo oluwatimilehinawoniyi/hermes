@@ -1,15 +1,15 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, forwardRef } from "react";
 import styles from "./formInput.module.css";
 
 interface BaseProps {
   id: string;
   label: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface TextInputProps extends BaseProps {
   type: "text" | "email" | "password";
-  value: string;
+  value?: string;
   required?: boolean;
   placeholder?: string;
 }
@@ -21,7 +21,7 @@ interface CheckboxProps extends BaseProps {
 
 type FormInputProps = TextInputProps | CheckboxProps;
 
-export default function FormInput(props: FormInputProps) {
+const FormInput = forwardRef<HTMLInputElement, FormInputProps>((props, ref) => {
   const { id, label, type } = props;
 
   if (type === "checkbox") {
@@ -33,6 +33,7 @@ export default function FormInput(props: FormInputProps) {
           checked={props.checked}
           onChange={props.onChange}
           aria-label={label}
+          ref={ref}
         />
         <label htmlFor={id}>{label}</label>
       </div>
@@ -52,4 +53,6 @@ export default function FormInput(props: FormInputProps) {
       />
     </div>
   );
-}
+});
+
+export default FormInput;

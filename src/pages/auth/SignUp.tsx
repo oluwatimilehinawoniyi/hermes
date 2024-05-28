@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@assets/styles/login.module.css";
 import loadingStyles from "@assets/styles/loadingState.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -6,9 +6,8 @@ import FormInput from "@components/UI/Form/FormInput";
 import supabase from "@utils/supabase";
 
 export default function SignUp() {
-  const [fullName, setfullName] = useState("");
+  const [fullname, setfullname] = useState("");
   const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,38 +27,28 @@ export default function SignUp() {
     }
   }, [signupSuccess]);
 
-  const handlefullNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setfullName(e.target.value);
-  };
-
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const handleLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setLocation(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     try {
-      const { data } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
-            fullName,
-            location,
+            fullname,
           },
-          emailRedirectTo: "https://localhost:5173/dashboard",
-          // emailRedirectTo: "https://hermeslogistics.vercel.app/dashboard",
+          emailRedirectTo: "http://localhost:5173/",
         },
       });
-      console.log(data);
+
+      if (error) {
+        console.error("Signup error:", error.message);
+      } else {
+        console.log("Signup success:", data);
+        // Navigate to dashboard or next step
+      }
       setSignupSuccess(true);
     } catch (error) {
       if (typeof error === "string") {
@@ -72,28 +61,14 @@ export default function SignUp() {
     } finally {
       setIsSubmitting(false);
     }
-
-    setEmail("");
-    setPassword("");
-    setfullName("");
-    setLocation("");
   };
-
-  function SignUpWithGoogle() {
-    supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: "https://iuzjrvqnnpwvkoguvgxn.supabase.co/auth/v1/callback",
-      },
-    });
-  }
 
   return (
     <section className={styles.loginPage}>
       {signupSuccess ? (
         <>
           <p>
-            A confirmation email has been sent to {email}. Please check your
+            A confirmation email has been sent to your mail. Please check your
             inbox and click the link to verify your account.
           </p>
 
@@ -102,7 +77,6 @@ export default function SignUp() {
       ) : (
         <>
           <h1>Join our company</h1>
-          <button onClick={SignUpWithGoogle}>Sign up with Google</button>
           <p
             style={{
               marginBottom: ".6rem",
@@ -116,33 +90,25 @@ export default function SignUp() {
             <FormInput
               type="text"
               id="fullname"
+              value={fullname}
+              onChange={(e) => setfullname(e.target.value)}
               label="full name"
-              value={fullName}
-              onChange={handlefullNameChange}
               placeholder="full name"
-            />
-            <FormInput
-              type="text"
-              id="location"
-              label="select location"
-              value={location}
-              onChange={handleLocationChange}
-              placeholder="choose a country"
             />
             <FormInput
               type="email"
               id="email"
               label="email"
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
-              onChange={handleEmailChange}
               placeholder="email"
             />
             <FormInput
               type="password"
               id="password"
-              label="select password"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={(e) => setPassword(e.target.value)}
+              label="select password"
               placeholder="password"
             />
             <button type="submit" className="auth_btn" disabled={isSubmitting}>

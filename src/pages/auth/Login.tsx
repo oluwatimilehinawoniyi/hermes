@@ -1,44 +1,35 @@
-import { ChangeEvent, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "@assets/styles/login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import FormInput from "@components/UI/Form/FormInput";
-import supabase from "@utils/supabase";
 import loadingStyles from "@assets/styles/loadingState.module.css";
+import { useAuth } from "@context/AuthProvider";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [isSubmitting, setisSubmitting] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleRememberMeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setRememberMe(e.target.checked);
-  };
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     try {
       setisSubmitting(true);
-      const { data } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      const { user } = data;
-      if (user) {
+
+      const {
+        data: { user, session },
+        // error,
+      } = await login(
+        emailRef.current?.value || "",
+        passwordRef.current?.value || ""
+      );
+      if (user && session) {
         navigate("/dashboard");
       }
-      console.log(data);
     } catch (error) {
       if (typeof error === "string") {
         alert(error);
@@ -50,30 +41,16 @@ export default function Login() {
     }
 
     setisSubmitting(false);
-
-    setEmail("");
-    setPassword("");
   };
 
   return (
     <section className={styles.loginPage}>
       <h1>Welcome back</h1>
-      <button>Google</button>
-      <p
-        style={{
-          marginBottom: ".6rem",
-          textAlign: "center",
-          fontSize: "var(--size-very-small)",
-        }}
-      >
-        or continue with email
-      </p>
       <form action="" onSubmit={handleSubmit}>
         <FormInput
           id="email"
           type="email"
-          value={email}
-          onChange={handleEmailChange}
+          ref={emailRef}
           aria-label="email"
           placeholder="email"
           label="email"
@@ -82,19 +59,11 @@ export default function Login() {
         <FormInput
           id="password"
           type="password"
-          value={password}
-          onChange={handlePasswordChange}
+          ref={passwordRef}
           label="password"
           placeholder="password"
         />
         <div className={styles.loginCTRLs}>
-          <FormInput
-            type="checkbox"
-            checked={rememberMe}
-            id="rememberMe"
-            label="remember me"
-            onChange={handleRememberMeChange}
-          />
           <a href="#">Forgot password?</a>
         </div>
         <button type="submit" className="auth_btn" disabled={isSubmitting}>
