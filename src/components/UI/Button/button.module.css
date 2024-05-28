@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 5px;
   padding: 4px 8px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   border: none;
   border-radius: var(--radius);
   font: inherit;
