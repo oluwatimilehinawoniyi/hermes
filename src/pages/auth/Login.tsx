@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "@assets/styles/login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import FormInput from "@components/UI/Form/FormInput";
@@ -11,8 +11,8 @@ export default function Login() {
 
   const [isSubmitting, setisSubmitting] = useState(false);
 
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -24,8 +24,7 @@ export default function Login() {
         data: { user, session },
         // error,
       } = await login(
-        emailRef.current?.value || "",
-        passwordRef.current?.value || ""
+        email, password
       );
       if (user && session) {
         navigate("/dashboard");
@@ -56,7 +55,8 @@ export default function Login() {
         <FormInput
           id="email"
           type="email"
-          ref={emailRef}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           aria-label="email"
           placeholder="email"
           label="email"
@@ -65,7 +65,8 @@ export default function Login() {
         <FormInput
           id="password"
           type="password"
-          ref={passwordRef}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           label="password"
           placeholder="password"
         />
