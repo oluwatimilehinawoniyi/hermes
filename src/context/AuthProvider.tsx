@@ -8,6 +8,8 @@ export interface AuthContextType {
   user: User | null | undefined;
   login: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<any>;
+  setAuth: (auth: boolean) => void;
+  setUser: (user: User | null | undefined) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -31,13 +33,14 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       const { data } = await supabase.auth.getUser();
       const { user: currentUser } = data;
       setUser(currentUser ?? null);
+      setAuth(!!currentUser);
       setLoading(false);
     };
     getUser();
 
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
-        setUser(session?.user);
+        setUser(session?.user ?? null);
         setAuth(true);
       } else if (event === "SIGNED_OUT") {
         setUser(null);
@@ -51,7 +54,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, user, login, signOut }}>
+    <AuthContext.Provider
+      value={{ auth, user, login, signOut, setAuth, setUser }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   );
