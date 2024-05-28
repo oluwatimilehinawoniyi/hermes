@@ -45,7 +45,13 @@ export default function Login() {
 
   return (
     <section className={styles.loginPage}>
-      <h1>Welcome back</h1>
+      <h1
+        style={{
+          marginBottom: ".6rem",
+        }}
+      >
+        Welcome back
+      </h1>
       <form action="" onSubmit={handleSubmit}>
         <FormInput
           id="email"

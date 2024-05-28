@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "@assets/styles/login.module.css";
 import loadingStyles from "@assets/styles/loadingState.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import FormInput from "@components/UI/Form/FormInput";
 import supabase from "@utils/supabase";
 
@@ -12,10 +12,8 @@ export default function SignUp() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [, setCountdown] = useState(5);
 
-  const navigate = useNavigate();
+  const [, setCountdown] = useState(5);
 
   useEffect(() => {
     if (signupSuccess) {
@@ -46,10 +44,9 @@ export default function SignUp() {
       if (error) {
         console.error("Signup error:", error.message);
       } else {
+        setSignupSuccess(true);
         console.log("Signup success:", data);
-        // Navigate to dashboard or next step
       }
-      setSignupSuccess(true);
     } catch (error) {
       if (typeof error === "string") {
         alert(error);
@@ -66,26 +63,32 @@ export default function SignUp() {
   return (
     <section className={styles.loginPage}>
       {signupSuccess ? (
-        <>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+            textAlign: "center",
+          }}
+        >
           <p>
             A confirmation email has been sent to your mail. Please check your
             inbox and click the link to verify your account.
           </p>
-
-          <button onClick={() => navigate("/")}>Go to Home</button>
-        </>
+          <p>You can close this tab or click the logo to go back home.</p>
+        </div>
       ) : (
         <>
-          <h1>Join our company</h1>
-          <p
+          <h1
             style={{
               marginBottom: ".6rem",
-              textAlign: "center",
-              fontSize: "var(--size-very-small)",
             }}
           >
-            or continue with email
-          </p>
+            Join our company
+          </h1>
+
           <form onSubmit={handleSubmit}>
             <FormInput
               type="text"
