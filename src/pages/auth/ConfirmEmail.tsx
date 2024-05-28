@@ -1,4 +1,3 @@
-// EmailConfirmation.js
 import supabase from "@utils/supabase";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
