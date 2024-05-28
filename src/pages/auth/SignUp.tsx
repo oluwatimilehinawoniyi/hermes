@@ -30,15 +30,13 @@ export default function SignUp() {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
             fullname,
           },
-          emailRedirectTo: `${window.location.origin}/auth/confirm`
-          // emailRedirectTo: "https://hermeslogistics.vercel.app/dashboard",
         },
       });
 
@@ -46,7 +44,6 @@ export default function SignUp() {
         console.error("Signup error:", error.message);
       } else {
         setSignupSuccess(true);
-        console.log("Signup success:", data);
       }
     } catch (error) {
       if (typeof error === "string") {

@@ -1,13 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-  Auth,
-  Dashboard,
-  Home,
-  Login,
-  SignUp,
-  AuthRoute,
-  EmailConfirmation,
-} from "@pages/index";
+import { Auth, Dashboard, Home, Login, SignUp, AuthRoute } from "@pages/index";
 import { AppHome, Requests, Clients, Parcels, Shipment } from "@pages/app";
 
 export default function App() {
@@ -18,7 +10,6 @@ export default function App() {
         <Route path="auth" element={<Auth />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="confirm" element={<EmailConfirmation />} />
         </Route>
         <Route element={<AuthRoute />}>
           <Route path="/dashboard" element={<Dashboard />}>
