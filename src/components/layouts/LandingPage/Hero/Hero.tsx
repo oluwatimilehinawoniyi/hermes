@@ -39,7 +39,7 @@ export default function Hero() {
                 disabled={true}
                 message="currently not accepting applications, but watchout!"
               >
-                get started
+                join us
                 <ArrowUpRight color="white" size={18} />
               </Button>
             </div>

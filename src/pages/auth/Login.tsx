@@ -3,7 +3,7 @@ import styles from "@assets/styles/login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import FormInput from "@components/UI/Form/FormInput";
 import loadingStyles from "@assets/styles/loadingState.module.css";
-import { useAuth } from "@context/AuthProvider";
+import { useAuth } from "@hooks/useAuth";
 
 export default function Login() {
   const navigate = useNavigate();

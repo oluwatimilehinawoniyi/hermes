@@ -1,37 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { User } from "@supabase/supabase-js";
 import supabase from "@utils/supabase";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
-interface AuthContextType {
+export interface AuthContextType {
+  auth: boolean;
   user: User | null | undefined;
   login: (email: string, password: string) => Promise<any>;
+  signOut: () => Promise<any>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 const login = (email: string, password: string) =>
   supabase.auth.signInWithPassword({ email, password });
 
+const signOut = () => supabase.auth.signOut();
+
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
 
-  const [, setAuth] = useState(false);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
@@ -50,7 +41,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ auth, user, login, signOut }}>
       {children}
     </AuthContext.Provider>
   );

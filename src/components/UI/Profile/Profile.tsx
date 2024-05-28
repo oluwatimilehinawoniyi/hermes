@@ -1,7 +1,19 @@
 import { LogOut } from "lucide-react";
 import style from "./profile.module.css";
+import { useAuth } from "@hooks/useAuth";
 
 export default function Profile({ manager }: { manager: string }) {
+  const { signOut } = useAuth();
+
+  async function handleSignOut(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    try {
+      const { error } = await signOut();
+      console.log(error);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className={style.profile}>
       <div>
@@ -16,9 +28,8 @@ export default function Profile({ manager }: { manager: string }) {
           <p>manager</p>
         </div>
       </div>
-      <div className={style.profileSettings}>
+      <div className={style.profileSettings} onClick={handleSignOut}>
         <LogOut size={18} />
-        {/* <Ellipsis /> */}
       </div>
     </div>
   );
