@@ -10,6 +10,7 @@ export interface AuthContextType {
   signOut: () => Promise<any>;
   setAuth: (auth: boolean) => void;
   setUser: (user: User | null) => void;
+  signUp: (email: string, password: string, fullname: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -25,6 +26,35 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [auth, setAuth] = useState(false);
+
+  const signUp = async (email: string, password: string, fullname: string) => {
+    const {
+      error,
+      data: { user },
+    } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          fullname,
+        },
+      },
+    });
+
+    if (error) {
+      console.error("Error during sign up:", error);
+    } else {
+      const { data, error: insertError } = await supabase
+        .from("managers")
+        .insert([{ id: user?.id, email, fullname }]);
+
+      if (insertError) {
+        console.error("Error inserting user into managers table:", insertError);
+      } else {
+        console.log("User inserted into managers table:", data);
+      }
+    }
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -44,7 +74,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           setUser(session?.user ?? null);
           setAuth(true);
           setLoading(false);
-        } else if (event === "SIGNED_OUT") {
+        } else if (event === "SIGNED_OUT" || !session) {
           setUser(null);
           setAuth(false);
         }
@@ -58,7 +88,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ auth, user, login, signOut, setAuth, setUser }}
+      value={{ auth, user, login, signOut, setAuth, setUser, signUp }}
     >
       {!loading && children}
     </AuthContext.Provider>

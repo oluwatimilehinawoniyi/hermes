@@ -3,7 +3,7 @@ import styles from "@assets/styles/login.module.css";
 import loadingStyles from "@assets/styles/loadingState.module.css";
 import { NavLink } from "react-router-dom";
 import FormInput from "@components/UI/Form/FormInput";
-import supabase from "@utils/supabase";
+import { useAuth } from "@hooks/useAuth";
 
 export default function SignUp() {
   const [fullname, setfullname] = useState("");
@@ -12,6 +12,8 @@ export default function SignUp() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [signupSuccess, setSignupSuccess] = useState(false);
+
+  const { signUp } = useAuth();
 
   const [, setCountdown] = useState(5);
 
@@ -30,21 +32,8 @@ export default function SignUp() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            fullname,
-          },
-        },
-      });
-
-      if (error) {
-        console.error("Signup error:", error.message);
-      } else {
-        setSignupSuccess(true);
-      }
+      await signUp(email, password, fullname);
+      setSignupSuccess(true);
     } catch (error) {
       if (typeof error === "string") {
         alert(error);
