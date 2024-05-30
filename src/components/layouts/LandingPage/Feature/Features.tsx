@@ -3,27 +3,51 @@ import { ArrowUpDown } from "lucide-react";
 import styles from "./features.module.css";
 
 export default function Features() {
+  const features = [
+    {
+      title: "Innovative Environment",
+      description:
+        "Join a forward-thinking team where your ideas are valued and innovation thrives.",
+      icon: <ArrowUpDown />,
+    },
+    {
+      title: "Career Growth",
+      description:
+        "Get numerous opportunities for professional development and career advancement.",
+      icon: <ArrowUpDown />,
+    },
+    {
+      title: "Collaborative Culture",
+      description:
+        "This is an environment where teamwork is at the heart of our operations.",
+      icon: <ArrowUpDown />,
+    },
+    {
+      title: "Employee Well-being",
+      description:
+        "Enjoy comprehensive health benefits, wellness programs, and a healthy work-life balance.",
+      icon: <ArrowUpDown />,
+    },
+  ];
   return (
     <Section>
       <div className={styles.features}>
         <div className={styles.featureHeader}>
           <h1>
-            <span>Lorem</span> ipsum <br /> dolor sit.
+            <span>growth</span> while <br /> creating magic
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            placeat ea, iure non reiciendis porro fugit temporibus, eius vel
-            dolorem debitis odio!
+            We give you the necessary tools and benchmark to grow beyond your
+            expectations. While doing this, you can look back and see your
+            magical trails at Hermes!
           </p>
         </div>
         <div className={styles.featuresList}>
-          {Array.from({ length: 4 }, (_, index) => (
+          {features.map(({ description, icon, title }, index) => (
             <div key={index}>
-              <span>
-                <ArrowUpDown />
-              </span>
-              <h3>Lorem, ipsum.</h3>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+              <span>{icon}</span>
+              <h3>{title}</h3>
+              <p>{description}</p>
             </div>
           ))}
         </div>

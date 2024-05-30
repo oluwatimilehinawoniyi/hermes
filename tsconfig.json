@@ -13,7 +13,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@data/*": ["src/data/*"],
       "@utils/*": ["src/utils/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@api/*": ["src/api/*"]
       // "@styles/*": ["src/styles/*"]
     },
 

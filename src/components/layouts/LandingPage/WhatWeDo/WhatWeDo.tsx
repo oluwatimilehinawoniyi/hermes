@@ -3,6 +3,24 @@ import Section from "@components/UI/Section/Section";
 import styles from "./whatWeDo.module.css";
 
 export default function WhatWeDo() {
+  const stats = [
+    {
+      value: "520k",
+      description: "Packages Delivered",
+    },
+    {
+      value: "99%",
+      description: "On-time Delivery Rate",
+    },
+    {
+      value: "500+",
+      description: "Global Partners",
+    },
+    {
+      value: "24/7",
+      description: "Customer Support",
+    },
+  ];
   return (
     <Section>
       <div className={styles.doings}>
@@ -12,9 +30,11 @@ export default function WhatWeDo() {
               <span>seamless logistics</span> <br /> for a connected world
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem repudiandae doloremque aliquam, obcaecati
-              necessitatibus perferendis.
+              Discover a world of seamless logistics solutions designed to meet
+              the demands of a connected world. At Hermes, we provide innovative
+              tools and reliable services to ensure your shipments are tracked,
+              secure, and delivered on time, every time. Join us in creating a
+              magical and efficient logistics experience.
             </p>
           </div>
         </div>
@@ -26,10 +46,10 @@ export default function WhatWeDo() {
           </video>
 
           <div className={styles.statsHolder}>
-            {Array.from({ length: 4 }, (_, index) => (
+            {stats.map(({ value, description }, index) => (
               <span key={index} className={styles.stats}>
-                <h1>20k</h1>
-                <p>Lorem, ipsum.</p>
+                <h1>{value}</h1>
+                <p>{description}</p>
               </span>
             ))}
           </div>

@@ -11,8 +11,10 @@ export default function Associates() {
             we serve <br /> more than <br /> <span>50+ countries</span>
           </h1>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias
-            dolor praesentium facere temporibus nam minus.
+         Our extensive network ensures that we can
+            handle every logistics needs no matter the location. We are
+            committed to delivering excellence and reliability, making us a
+            trusted partner in the logistics industry.
           </p>
         </div>
         <div className={styles.associateCarousel}>

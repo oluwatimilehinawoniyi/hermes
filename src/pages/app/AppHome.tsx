@@ -1,3 +1,4 @@
+import { getParcels, getRequests, getShipments } from "@api/index";
 import style from "@assets/styles/dashboard/app.module.css";
 import AvailableTrucks from "@components/layouts/Dashboard/AvailableTrucks/AvailableTrucks";
 import DailyStats from "@components/layouts/Dashboard/DailyStats/DailyStats";
@@ -6,31 +7,38 @@ import Requests from "@components/layouts/Dashboard/Requests/Requests";
 import DashboardCard from "@components/UI/DashboardRelated/Card/DashboardCard";
 import OverviewStatItem from "@components/UI/DashboardRelated/OverviewStats/OverviewStatItem";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
+import useTableFetcher from "@hooks/useTableFetcher";
 import { Container, Package, PackageCheck, Truck } from "lucide-react";
 
 export default function AppHome() {
+  const { data: requestData } = useTableFetcher(getRequests);
+  const { data: shipmentData } = useTableFetcher(getShipments);
+  const { data: parcelData } = useTableFetcher(getParcels);
+
   const overviewStats = [
     {
       title: "new packages",
-      stats: 222,
+      stats:
+        parcelData.filter((item) => item.status === "not assigned").length +
+        requestData.filter((item) => item.status === "accepted").length,
       icon: Package,
       colour: "var(--purple)",
     },
     {
       title: "ready for shipping",
-      stats: 60,
+      stats: requestData.length,
       icon: Container,
       colour: "var(--primary)",
     },
     {
       title: "in transit",
-      stats: 2067,
+      stats: shipmentData.filter((item) => item.status === "on way").length,
       icon: Truck,
       colour: "var(--warning)",
     },
     {
       title: "delivered",
-      stats: 3600,
+      stats: shipmentData.filter((item) => item.status === "arrived").length,
       icon: PackageCheck,
       colour: "var(--primary)",
     },
