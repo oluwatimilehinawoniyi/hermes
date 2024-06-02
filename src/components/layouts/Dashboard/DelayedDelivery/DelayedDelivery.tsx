@@ -1,13 +1,13 @@
 import ShowAll from "@components/UI/DashboardRelated/ShowAll/ShowAll";
 import Table from "@components/UI/DashboardRelated/Table/Table";
 import style from "./delayed.module.css";
-import useTableFetcher from "@hooks/useTableFetcher";
-import { getShipments } from "@api/shipments";
+// import useTableFetcher from "@hooks/useTableFetcher";
+// import { getShipments } from "@api/shipments";
 
 export default function DelayedDelivery() {
-  const { data } = useTableFetcher(getShipments);
+  // const { data } = useTableFetcher(getShipments);
 
-  console.log(data.filter((item) => item.status === "delayed"));
+  // console.log(data.filter((item) => item.status === "delayed"));
 
   const deliveryData = {
     headers: ["destination", "truck", "arrival", "delay"],

@@ -11,9 +11,11 @@ import {
   Box,
   ClipboardList,
   LayoutGrid,
+  Plus,
   Truck,
   User,
 } from "lucide-react";
+import useModal from "@hooks/useModal";
 
 export default function Sidebar() {
   const navItems = [
@@ -23,6 +25,8 @@ export default function Sidebar() {
     { item: "requests", icon: ClipboardList, hasStat: true, stat: 10 },
     { item: "clients", icon: User, hasStat: false },
   ];
+
+  const { toggleModal } = useModal();
 
   return (
     <nav className={style.nav}>
@@ -61,7 +65,14 @@ export default function Sidebar() {
           ))}
         </ListItemHolder>
         <div className={style.sidebarBtn}>
-          <Button width="100%">create shipment</Button>
+          <Button width="100%" fn={toggleModal}>
+            <Plus size={18} strokeWidth={3} style={{ stroke: "#fff" }} />
+            create shipment
+          </Button>
+          <Button width="100%" fn={toggleModal}>
+            <Truck size={18} strokeWidth={2} style={{ stroke: "#fff" }} />
+            create vehicle
+          </Button>
         </div>
       </div>
       <div className={style.bottomSection}>

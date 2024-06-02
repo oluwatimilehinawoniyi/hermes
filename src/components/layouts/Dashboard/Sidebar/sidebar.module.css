@@ -24,6 +24,9 @@
 
 .sidebarBtn {
   padding-inline: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .bottomSection {

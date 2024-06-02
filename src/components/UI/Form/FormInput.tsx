@@ -3,13 +3,13 @@ import styles from "./formInput.module.css";
 
 interface BaseProps {
   id: string;
-  label: string;
+  label?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface TextInputProps extends BaseProps {
-  type: "text" | "email" | "password";
-  value?: string;
+  type: "text" | "number" | "email" | "password";
+  value?: string | number;
   required?: boolean;
   placeholder?: string;
 }
@@ -40,8 +40,8 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>((props, ref) => {
     );
   }
   return (
-    <div className={styles.input_styles}>
-      {/* <label htmlFor={props.id}>{props.label}</label> */}
+    <div className={styles.input_styles} data-type="text">
+      <label htmlFor={props.id}>{props.label}</label>
       <input
         id={id}
         type={type}

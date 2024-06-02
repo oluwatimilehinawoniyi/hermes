@@ -1,0 +1,31 @@
+.newShipment {
+  width: 500px;
+}
+
+.newShipment .header {
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line-colour);
+}
+
+.newShipment .footer {
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line-colour);
+}
+
+.newShipment .header,
+.newShipment .footer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.newShipment .header p {
+  font-size: var(--size-regular);
+  color: var(--secondary);
+  text-transform: capitalize;
+  font-weight: var(--font-semibold);
+}
+
+.newShipment .form {
+  padding-block: 0.5rem;
+}

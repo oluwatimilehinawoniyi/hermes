@@ -1,8 +1,15 @@
-/* .input_styles {
-} */
+.input_styles[data-type="text"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
 
-/* .input_styles label {
-} */
+.input_styles label {
+  color: var(--secondary);
+  text-transform: capitalize;
+  font-size: var(--size-small);
+  font-weight: var(--font-medium);
+}
 
 .input_styles input {
   width: 100%;
@@ -13,6 +20,16 @@
   margin-bottom: 0.7rem;
 }
 
+.input_styles input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.input_styles input[type="number"]::-webkit-outer-spin-button,
+.input_styles input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Chrome, Safari, Edge, Opera */
+  margin: 0;
+}
+
 .input_styles input:focus {
   border: none;
   outline: 2px solid var(--primary);
@@ -21,8 +38,9 @@
 
 .input_styles input::placeholder {
   color: var(--faded-text-colour);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   font-size: var(--size-small);
+  opacity: 0.6;
 }
 
 /* .input_styles:not(:last-of-type) {
