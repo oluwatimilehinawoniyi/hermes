@@ -19,7 +19,7 @@ export default function CreateShipment() {
     weight: "",
   });
 
-  const { toggleModal } = useModal();
+  const { toggleNSModal } = useModal();
   const handleShipmentCreation = async () => {
     setStatus({ loading: true, done: false, failed: false });
     const { error } = await supabase.from("vehicles").insert({
@@ -34,7 +34,7 @@ export default function CreateShipment() {
       setStatus({ loading: false, done: false, failed: true });
     } else {
       setStatus({ loading: false, done: true, failed: false });
-      setTimeout(toggleModal, 5000);
+      setTimeout(toggleNSModal, 5000);
     }
   };
 
@@ -99,7 +99,7 @@ export default function CreateShipment() {
           </form>
         </div>
         <div className={styles.footer}>
-          <Button backgroundColor="var(--danger)" fn={toggleModal}>
+          <Button backgroundColor="var(--danger)" fn={toggleNSModal}>
             cancel
           </Button>
           <Button backgroundColor="var(--primary)" fn={handleShipmentCreation}>

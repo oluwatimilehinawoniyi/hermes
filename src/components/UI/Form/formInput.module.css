@@ -38,7 +38,7 @@
 
 .input_styles input::placeholder {
   color: var(--faded-text-colour);
-  /* text-transform: capitalize; */
+  text-transform: capitalize;
   font-size: var(--size-small);
   opacity: 0.6;
 }

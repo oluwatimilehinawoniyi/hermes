@@ -1,13 +1,17 @@
 import { createContext, ReactNode, useState } from "react";
 
 interface ModalContextType {
-  isOpen: boolean;
-  toggleModal: () => void;
+  isNSOpen: boolean;
+  isNVOpen: boolean;
+  toggleNVModal: () => void;
+  toggleNSModal: () => void;
 }
 
 const defaultModalContext: ModalContextType = {
-  isOpen: false,
-  toggleModal: () => {},
+  isNSOpen: false,
+  isNVOpen: false,
+  toggleNVModal: () => {},
+  toggleNSModal: () => {},
 };
 
 export const ModalContext = createContext<ModalContextType | undefined>(
@@ -15,15 +19,22 @@ export const ModalContext = createContext<ModalContextType | undefined>(
 );
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // NV means New Vehicle, NS means New Shipment
+  const [isNSOpen, setIsNSOpen] = useState(false);
+  const [isNVOpen, setIsNVOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-    console.log("is it open?" + isOpen);
+  const toggleNSModal = () => {
+    setIsNSOpen(!isNSOpen);
+  };
+
+  const toggleNVModal = () => {
+    setIsNVOpen(!isNVOpen);
   };
 
   return (
-    <ModalContext.Provider value={{ isOpen, toggleModal }}>
+    <ModalContext.Provider
+      value={{ isNSOpen, isNVOpen, toggleNSModal, toggleNVModal }}
+    >
       {children}
     </ModalContext.Provider>
   );

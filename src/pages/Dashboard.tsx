@@ -4,9 +4,10 @@ import Sidebar from "@components/layouts/Dashboard/Sidebar/Sidebar";
 import useModal from "@hooks/useModal";
 import Modal from "@components/layouts/Dashboard/Modal/Modal";
 import CreateShipment from "@components/UI/DashboardRelated/NewShipment/CreateShipment";
+import CreateVehicle from "@components/UI/DashboardRelated/NewVehicle/NewVehicle";
 
 export default function Dashboard() {
-  const { isOpen } = useModal();
+  const { isNSOpen, isNVOpen } = useModal();
   return (
     <section className={style.dashboard}>
       <section className={style.sidebarHolder}>
@@ -16,15 +17,20 @@ export default function Dashboard() {
       <div
         className={style.mainContent}
         style={{
-          height: isOpen ? "100vh" : undefined,
-          overflowY: isOpen ? "hidden" : undefined,
+          height: isNVOpen || isNSOpen ? "100vh" : undefined,
+          overflowY: isNVOpen || isNSOpen ? "hidden" : undefined,
         }}
       >
         <Outlet />
       </div>
-      {isOpen && (
+      {isNSOpen && (
         <Modal>
           <CreateShipment />
+        </Modal>
+      )}
+      {isNVOpen && (
+        <Modal>
+          <CreateVehicle />
         </Modal>
       )}
     </section>

@@ -7,7 +7,6 @@ import {
 } from "@components/UI/DashboardRelated/ListComponents/ListItem";
 import style from "./sidebar.module.css";
 import {
-  Bell,
   Box,
   ClipboardList,
   LayoutGrid,
@@ -26,7 +25,7 @@ export default function Sidebar() {
     { item: "clients", icon: User, hasStat: false },
   ];
 
-  const { toggleModal } = useModal();
+  const { toggleNVModal, toggleNSModal } = useModal();
 
   return (
     <nav className={style.nav}>
@@ -41,15 +40,6 @@ export default function Sidebar() {
         >
           <Logo isLink={false} width="100%" />
         </div>
-        <ListItemHolder styles={{ paddingRight: "0.5rem" }}>
-          <ListItem
-            isLink={false}
-            title="notifications"
-            icon={Bell}
-            hasStats={true}
-            stats={10}
-          />
-        </ListItemHolder>
       </div>
       <div className={style.middleSection}>
         <ListItemHolder styles={{ paddingRight: "0.5rem" }}>
@@ -65,11 +55,11 @@ export default function Sidebar() {
           ))}
         </ListItemHolder>
         <div className={style.sidebarBtn}>
-          <Button width="100%" fn={toggleModal}>
+          <Button width="100%" fn={toggleNSModal}>
             <Plus size={18} strokeWidth={3} style={{ stroke: "#fff" }} />
             create shipment
           </Button>
-          <Button width="100%" fn={toggleModal}>
+          <Button width="100%" fn={toggleNVModal}>
             <Truck size={18} strokeWidth={2} style={{ stroke: "#fff" }} />
             create vehicle
           </Button>

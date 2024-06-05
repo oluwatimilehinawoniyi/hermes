@@ -1,0 +1,45 @@
+.newVehicle {
+  width: 500px;
+}
+
+.newVehicle .header {
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line-colour);
+}
+
+.newVehicle .footer {
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line-colour);
+}
+
+.newVehicle .header,
+.newVehicle .footer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.newVehicle .header p {
+  font-size: var(--size-regular);
+  color: var(--secondary);
+  text-transform: capitalize;
+  font-weight: var(--font-semibold);
+}
+
+.newVehicle .form {
+  padding-block: 0.5rem;
+}
+
+.truckName,
+.truckRoute,
+.truckCapacity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.truckCapacity {
+  flex-direction: column;
+  align-items: start;
+}
