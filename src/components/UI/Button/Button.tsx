@@ -9,6 +9,7 @@ export default function Button({
   color = "#fff",
   backgroundColor = "var(--primary)",
   fn,
+  type,
 }: {
   children: ReactNode;
   disabled?: boolean;
@@ -17,6 +18,7 @@ export default function Button({
   width?: string;
   color?: string;
   fn?: () => void;
+  type?: "button" | "submit" | "reset";
 }) {
   return (
     <>
@@ -24,6 +26,7 @@ export default function Button({
         className={styles.button}
         disabled={disabled}
         onClick={fn}
+        type={type}
         style={{
           width: width,
           backgroundColor: backgroundColor,

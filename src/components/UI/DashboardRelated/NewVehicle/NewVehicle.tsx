@@ -10,8 +10,6 @@ import { RadioStatusSelector } from "../RadioButton/RadioButton";
 interface NewVehicle {
   truckModel: string;
   truckNumber: string;
-  origin: string;
-  destination: string;
   capacity: string;
   status: "active" | "maintenance" | "available";
 }
@@ -27,19 +25,18 @@ export default function CreateVehicle() {
   const [newVehicle, setNewVehicle] = useState<NewVehicle>({
     truckModel: "",
     truckNumber: "",
-    origin: "",
-    destination: "",
     capacity: "",
     status: "available",
   });
 
   const { toggleNVModal } = useModal();
   const handleVehicleCreation = async () => {
+    console.log(newVehicle);
+
     setStatus({ loading: true, done: false, failed: false });
-    const { error } = await supabase.from("vehicles").insert({
+    const { error } = await supabase.from("trucks").insert({
+      truck_model: newVehicle.truckModel,
       truck_number: newVehicle.truckNumber,
-      origin: newVehicle.origin,
-      destination: newVehicle.destination,
       capacity: newVehicle.capacity ? parseInt(newVehicle.capacity) : null,
       status: radiostatus,
     });
@@ -106,39 +103,12 @@ export default function CreateVehicle() {
                 style={{
                   width: "100%",
                 }}
-              >
-                <FormInput
-                  type="text"
-                  id="origin"
-                  label="origin"
-                  placeholder="lagos"
-                  required={true}
-                  value={newVehicle.origin}
-                  onChange={(e) =>
-                    setNewVehicle({ ...newVehicle, origin: e.target.value })
-                  }
-                />
-              </div>
+              ></div>
               <div
                 style={{
                   width: "100%",
                 }}
-              >
-                <FormInput
-                  type="text"
-                  id="destination"
-                  label="destination"
-                  placeholder="enugu"
-                  required={true}
-                  value={newVehicle.destination}
-                  onChange={(e) =>
-                    setNewVehicle({
-                      ...newVehicle,
-                      destination: e.target.value,
-                    })
-                  }
-                />
-              </div>
+              ></div>
             </div>
             <div className={styles.truckCapacity}>
               <div
@@ -180,11 +150,11 @@ export default function CreateVehicle() {
           </Button>
           <Button backgroundColor="var(--primary)" fn={handleVehicleCreation}>
             {status.loading ? (
-              <ButtonContent status={{ loading: true }} />
+              <ButtonContent status={{ loading: true, text: "vehicle" }} />
             ) : status.done ? (
-              <ButtonContent status={{ done: true }} />
+              <ButtonContent status={{ done: true, text: "vehicle" }} />
             ) : (
-              <ButtonContent status={{}} />
+              <ButtonContent status={{ text: "vehicle" }} />
             )}
           </Button>
         </div>

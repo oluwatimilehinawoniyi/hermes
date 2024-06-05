@@ -3,26 +3,27 @@ import { motion } from "framer-motion";
 interface StatusProps {
   loading?: boolean;
   done?: boolean;
+  text?: string;
 }
-
-const buttonVariants = {
-  initial: {
-    path: "M5 12h14 M12 5v14", // Plus sign for "create"
-    text: "Create Shipment",
-  },
-  loading: {
-    path: "", // Placeholder since we'll use circles for the ellipsis
-    text: "Creating...",
-  },
-  done: {
-    path: "M20 6 9 17l-5-5", // Check mark for "created"
-    text: "Created!",
-  },
-};
 
 type VariantKey = "initial" | "loading" | "done";
 
 const ButtonContent: React.FC<{ status: StatusProps }> = ({ status }) => {
+  const buttonVariants = {
+    initial: {
+      path: "M5 12h14 M12 5v14", // Plus sign for "create"
+      text: status.text === "vehicle" ? "Create Vehicle" : "Create Shipment",
+    },
+    loading: {
+      path: "", // Placeholder since we'll use circles for the ellipsis
+      text: "Creating...",
+    },
+    done: {
+      path: "M20 6 9 17l-5-5", // Check mark for "created"
+      text: "Created!",
+    },
+  };
+
   const currentVariant: VariantKey = status.loading
     ? "loading"
     : status.done

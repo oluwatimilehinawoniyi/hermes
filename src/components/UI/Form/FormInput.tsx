@@ -8,7 +8,7 @@ interface BaseProps {
 }
 
 interface TextInputProps extends BaseProps {
-  type: "text" | "number" | "email" | "password";
+  type: "text" | "number" | "email" | "password" | "datetime-local";
   value?: string | number;
   required?: boolean;
   placeholder?: string;

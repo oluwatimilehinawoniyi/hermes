@@ -3,7 +3,7 @@ import style from "./table.module.css";
 
 interface TableProps {
   headers: string[];
-  data: (string | number)[][];
+  data: Record<string, string | number>[];
 }
 
 const Table: React.FC<TableProps> = ({ headers, data }) => {
@@ -19,8 +19,8 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
       <tbody>
         {data.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+            {headers.map((header, cellIndex) => (
+              <td key={cellIndex}>{row[header]}</td>
             ))}
           </tr>
         ))}

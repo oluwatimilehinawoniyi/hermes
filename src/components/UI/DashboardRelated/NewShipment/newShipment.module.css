@@ -1,5 +1,13 @@
 .newShipment {
   width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: var(--radius-card);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .newShipment .header {
@@ -27,5 +35,13 @@
 }
 
 .newShipment .form {
-  padding-block: 0.5rem;
+  height: 100%;
+  padding-block: 1rem;
+}
+
+.shipment_Route_Timing {
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }

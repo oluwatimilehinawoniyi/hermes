@@ -5,7 +5,7 @@ export default function Truck({
   fillColor,
 }: {
   loadWidth: number;
-  fillColor: string;
+  fillColor?: string;
 }) {
   const boxWidth = 467;
   return (

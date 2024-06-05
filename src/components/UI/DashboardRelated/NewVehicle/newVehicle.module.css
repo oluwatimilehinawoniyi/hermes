@@ -1,5 +1,13 @@
 .newVehicle {
   width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: var(--radius-card);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .newVehicle .header {
@@ -27,7 +35,7 @@
 }
 
 .newVehicle .form {
-  padding-block: 0.5rem;
+  padding-block: 1rem;
 }
 
 .truckName,
