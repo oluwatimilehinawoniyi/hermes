@@ -14,9 +14,9 @@ interface NewShipment {
   origin: string;
   destination: string;
   status: "pending" | "in transit" | "completed";
-  departure_time: Date;
-  expected_arrival_time: Date;
-  actual_arrival_time: Date | null;
+  departure_time: string;
+  expected_arrival_time: string;
+  actual_arrival_time: string | null;
   delay: string | null;
 }
 
@@ -40,8 +40,8 @@ export default function CreateShipment() {
     origin: "",
     destination: "",
     status: "pending",
-    departure_time: new Date(),
-    expected_arrival_time: new Date(),
+    departure_time: new Date().toISOString().slice(0, 16),
+    expected_arrival_time: new Date().toISOString().slice(0, 16),
     actual_arrival_time: null,
     delay: null,
   });
@@ -61,7 +61,7 @@ export default function CreateShipment() {
     if (type === "datetime-local") {
       setNewShipment((prevState) => ({
         ...prevState,
-        [name]: new Date(value),
+        [name]: value,
       }));
     } else {
       setNewShipment((prevState) => ({
@@ -73,14 +73,13 @@ export default function CreateShipment() {
 
   const handleShipmentCreation = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(newShipment);
 
     const dataToSend = {
       ...newShipment,
-      departure_time: newShipment.departure_time.toISOString(),
-      expected_arrival_time: newShipment.expected_arrival_time.toISOString(),
+      departure_time: new Date(newShipment.departure_time).toISOString(),
+      expected_arrival_time: new Date(newShipment.expected_arrival_time).toISOString(),
       actual_arrival_time: newShipment.actual_arrival_time
-        ? newShipment.actual_arrival_time.toISOString()
+        ? new Date(newShipment.actual_arrival_time).toISOString()
         : null,
       delay: newShipment.delay || null,
       status: radiostatus,
@@ -162,23 +161,21 @@ export default function CreateShipment() {
 
               <FormInput
                 type="datetime-local"
-                id="departureTime"
+                id="departure_time"
+                name="departure_time"
                 label="Departure Time"
                 required
-                value={(newShipment.departure_time || "")
-                  .toISOString()
-                  .slice(0, 16)}
+                value={newShipment.departure_time}
                 onChange={handleChange}
               />
 
               <FormInput
                 type="datetime-local"
-                id="expectedArrivalTime"
+                id="expected_arrival_time"
+                name="expected_arrival_time"
                 label="Expected Arrival Time"
                 required
-                value={(newShipment.expected_arrival_time || "")
-                  .toISOString()
-                  .slice(0, 16)}
+                value={newShipment.expected_arrival_time}
                 onChange={handleChange}
               />
             </div>

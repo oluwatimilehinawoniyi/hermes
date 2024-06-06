@@ -12,6 +12,7 @@ interface TextInputProps extends BaseProps {
   value?: string | number;
   required?: boolean;
   placeholder?: string;
+  name?: string;
 }
 
 interface CheckboxProps extends BaseProps {
@@ -46,6 +47,7 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>((props, ref) => {
         id={id}
         type={type}
         value={props.value}
+        name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder}
         aria-label={props.label}
