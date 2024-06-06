@@ -23,8 +23,8 @@ export default function DynamicPage({
 }
 
 interface DynamicHeaderProps {
-  filterChildren: ReactNode;
-  sortChildren: ReactNode;
+  filterChildren?: ReactNode;
+  sortChildren?: ReactNode;
   title: string;
 }
 
