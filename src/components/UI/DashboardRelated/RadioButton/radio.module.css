@@ -37,7 +37,8 @@
   cursor: pointer;
   gap: 0.5rem;
   font-size: var(--size-very-small);
-  text-transform: lowercase;
+  text-transform: capitalize;
+
 }
 
 .radioButtonGroup {

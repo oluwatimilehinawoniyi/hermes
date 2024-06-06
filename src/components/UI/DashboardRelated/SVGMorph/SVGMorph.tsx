@@ -15,7 +15,7 @@ const ButtonContent: React.FC<{ status: StatusProps }> = ({ status }) => {
       text: status.text === "vehicle" ? "Create Vehicle" : "Create Shipment",
     },
     loading: {
-      path: "", // Placeholder since we'll use circles for the ellipsis
+      path: "", // No path for loading state
       text: "Creating...",
     },
     done: {

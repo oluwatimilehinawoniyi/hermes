@@ -31,17 +31,19 @@ const StatusRadioButton: React.FC<StatusRadioButtonProps> = ({
 interface RadioStatusSelectorProps {
   status: string;
   setStatus: (status: string) => void;
+  data: string[];
 }
 
 export const RadioStatusSelector: React.FC<RadioStatusSelectorProps> = ({
   status,
   setStatus,
+  data,
 }) => {
   return (
     <div className={styles.radioButtonGroup}>
       <p>Status:</p>
       <div className={styles.radios}>
-        {["available", "active", "maintenance"].map((option) => (
+        {data.map((option) => (
           <StatusRadioButton
             key={option}
             label={option.charAt(0).toUpperCase() + option.slice(1)}

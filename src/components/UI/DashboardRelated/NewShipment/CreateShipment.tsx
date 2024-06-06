@@ -7,18 +7,17 @@ import { useState } from "react";
 import ButtonContent from "../SVGMorph/SVGMorph";
 import Truck from "@components/UI/Truck/Truck";
 import VehicleDropdown from "../VehicleDropDown/VehicleDropDown";
+import { RadioStatusSelector } from "../RadioButton/RadioButton";
 
 interface NewShipment {
-  truckId: string;
-  truckNumber: string;
+  truck_id: string;
   origin: string;
   destination: string;
-  weight: string;
   status: "pending" | "in transit" | "completed";
-  departureTime: Date;
-  expectedArrivalTime: Date;
-  actualArrivalTime: Date | null;
-  delay: string;
+  departure_time: Date;
+  expected_arrival_time: Date;
+  actual_arrival_time: Date | null;
+  delay: string | null;
 }
 
 interface Vehicle {
@@ -29,22 +28,22 @@ interface Vehicle {
 }
 
 export default function CreateShipment() {
+  const [radiostatus, setRadioStatus] = useState<string>("pending");
   const [status, setStatus] = useState({
     loading: false,
     done: false,
     failed: false,
   });
+
   const [newShipment, setNewShipment] = useState<NewShipment>({
-    truckId: "",
-    truckNumber: "",
+    truck_id: "",
     origin: "",
     destination: "",
-    weight: "",
     status: "pending",
-    departureTime: new Date(),
-    expectedArrivalTime: new Date(),
-    actualArrivalTime: null,
-    delay: "",
+    departure_time: new Date(),
+    expected_arrival_time: new Date(),
+    actual_arrival_time: null,
+    delay: null,
   });
 
   const { toggleNSModal } = useModal();
@@ -52,8 +51,7 @@ export default function CreateShipment() {
   const handleVehicleSelect = (vehicle: Vehicle) => {
     setNewShipment({
       ...newShipment,
-      truckId: vehicle.id,
-      truckNumber: vehicle.truck_number,
+      truck_id: vehicle.id,
     });
   };
 
@@ -75,14 +73,17 @@ export default function CreateShipment() {
 
   const handleShipmentCreation = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(newShipment);
 
     const dataToSend = {
       ...newShipment,
-      departureTime: newShipment.departureTime.toISOString(),
-      expectedArrivalTime: newShipment.expectedArrivalTime.toISOString(),
-      actualArrivalTime: newShipment.actualArrivalTime
-        ? newShipment.actualArrivalTime.toISOString()
+      departure_time: newShipment.departure_time.toISOString(),
+      expected_arrival_time: newShipment.expected_arrival_time.toISOString(),
+      actual_arrival_time: newShipment.actual_arrival_time
+        ? newShipment.actual_arrival_time.toISOString()
         : null,
+      delay: newShipment.delay || null,
+      status: radiostatus,
     };
 
     setStatus({ loading: true, done: false, failed: false });
@@ -93,7 +94,8 @@ export default function CreateShipment() {
       setStatus({ loading: false, done: false, failed: true });
     } else {
       setStatus({ loading: false, done: true, failed: false });
-      setTimeout(toggleNSModal, 5000);
+      console.log(dataToSend);
+      setTimeout(toggleNSModal, 1500);
     }
   };
 
@@ -163,7 +165,7 @@ export default function CreateShipment() {
                 id="departureTime"
                 label="Departure Time"
                 required
-                value={(newShipment.departureTime || "")
+                value={(newShipment.departure_time || "")
                   .toISOString()
                   .slice(0, 16)}
                 onChange={handleChange}
@@ -174,27 +176,44 @@ export default function CreateShipment() {
                 id="expectedArrivalTime"
                 label="Expected Arrival Time"
                 required
-                value={(newShipment.expectedArrivalTime || "")
+                value={(newShipment.expected_arrival_time || "")
                   .toISOString()
                   .slice(0, 16)}
                 onChange={handleChange}
               />
             </div>
+
+            <div
+              style={{
+                width: "100%",
+                marginBlock: "1rem",
+              }}
+            >
+              <RadioStatusSelector
+                data={["pending", "in transit", "completed"]}
+                status={radiostatus}
+                setStatus={setRadioStatus}
+              />
+            </div>
           </form>
-        </div>
-        <div className={styles.footer}>
-          <Button backgroundColor="var(--danger)" fn={toggleNSModal}>
-            cancel
-          </Button>
-          <Button backgroundColor="var(--primary)" type="submit">
-            {status.loading ? (
-              <ButtonContent status={{ loading: true }} />
-            ) : status.done ? (
-              <ButtonContent status={{ done: true }} />
-            ) : (
-              <ButtonContent status={{}} />
-            )}
-          </Button>
+          <div className={styles.footer}>
+            <Button backgroundColor="var(--danger)" fn={toggleNSModal}>
+              cancel
+            </Button>
+            <Button
+              backgroundColor="var(--primary)"
+              type="submit"
+              fn={handleShipmentCreation}
+            >
+              {status.loading ? (
+                <ButtonContent status={{ loading: true }} />
+              ) : status.done ? (
+                <ButtonContent status={{ done: true }} />
+              ) : (
+                <ButtonContent status={{}} />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
     </section>

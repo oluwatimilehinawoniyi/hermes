@@ -17,7 +17,7 @@ export default function Button({
   backgroundColor?: string;
   width?: string;
   color?: string;
-  fn?: () => void;
+  fn?: (e: React.FormEvent) => void;
   type?: "button" | "submit" | "reset";
 }) {
   return (

@@ -15,7 +15,7 @@ interface NewVehicle {
 }
 
 export default function CreateVehicle() {
-  const [radiostatus, setRadioStatus] = useState<string>("available");
+  const [radiostatus, setRadioStatus] = useState<string>("");
 
   const [status, setStatus] = useState({
     loading: false,
@@ -31,8 +31,6 @@ export default function CreateVehicle() {
 
   const { toggleNVModal } = useModal();
   const handleVehicleCreation = async () => {
-    console.log(newVehicle);
-
     setStatus({ loading: true, done: false, failed: false });
     const { error } = await supabase.from("trucks").insert({
       truck_model: newVehicle.truckModel,
@@ -46,7 +44,7 @@ export default function CreateVehicle() {
       setStatus({ loading: false, done: false, failed: true });
     } else {
       setStatus({ loading: false, done: true, failed: false });
-      setTimeout(toggleNVModal, 5000);
+      setTimeout(toggleNVModal, 1500);
     }
   };
 
@@ -133,10 +131,11 @@ export default function CreateVehicle() {
               </div>
               <div
                 style={{
-                  width: "70%",
+                  width: "100%",
                 }}
               >
                 <RadioStatusSelector
+                  data={["available", "active", "maintenance"]}
                   status={radiostatus}
                   setStatus={setRadioStatus}
                 />
