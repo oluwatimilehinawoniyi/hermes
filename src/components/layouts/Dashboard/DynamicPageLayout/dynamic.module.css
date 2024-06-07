@@ -85,6 +85,7 @@
 
 .dynamicTable .gridHeader {
   position: sticky;
+  z-index: 1;
   top: 0px;
   border-bottom: 2px solid var(--line-colour);
 
@@ -127,6 +128,7 @@
     align-items: center;
     justify-content: start;
     padding-block: 0.7rem;
+    /* z-index: inherit; */
   }
 }
 
@@ -162,15 +164,54 @@
 
   .delayedStatus {
     background-color: rgb(235, 87, 105, 0.2);
-    color: var(--danger);
+    p {
+      color: var(--danger);
+    }
   }
 
   .onWayStatus {
     background-color: rgb(242, 175, 76, 0.2);
-    color: var(--warning);
+    p {
+      color: var(--warning);
+    }
   }
   .arrivedStatus {
     background-color: rgb(93, 201, 131, 0.2);
-    color: var(--primary);
+    p {
+      color: var(--primary);
+    }
   }
+}
+
+/* styles to change status */
+.statusComp {
+  position: relative;
+}
+
+.selectStatuses {
+  font-size: var(--size-very-small);
+  text-transform: capitalize;
+  position: absolute;
+  z-index: 1;
+  top: -110%;
+  left: 0px;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  width: max-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.selectStatus {
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  transition: background-color 0.25s linear;
+}
+
+.selectStatus:hover {
+  background-color: var(--line-colour);
+}
+
+.selectStatus:not(:last-of-type) {
+  border-bottom: 1px solid var(--line-colour);
 }

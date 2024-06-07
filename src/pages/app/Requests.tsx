@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getRequests } from "@api/requests";
 import DynamicPage, {
   DynamicHeader,
   DynamicTable,
@@ -7,35 +8,49 @@ import DynamicPage, {
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
+import formatDateTime from "@utils/formatDate";
 
-import data from "@data/requestData.json";
-import { transformData, validateStatus } from "@utils/TransformData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RequestBodyType } from "src/types";
 
-const validRequestStatuses: ReadonlyArray<"pending" | "accepted"> = [
-  "pending",
-  "accepted",
-];
-
-const transformedData = transformData<RequestBodyType>(data.body, (status) =>
-  validateStatus(status, validRequestStatuses)
-);
-
 export default function Requests() {
-  const { header, body } = { header: data.header, body: transformedData };
+  const [requests, setRequests] = useState<RequestBodyType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const header = ["destination", "weight", "request date", "status"];
 
   const filterBtns = [
-    { item: "all", length: body.length },
-    ...["accepted", "pending"].map((status) => ({
+    { item: "all", length: requests.length },
+    ...["approved", "denied", "pending"].map((status) => ({
       item: status,
-      length: body.filter((item) => item.status === status).length,
+      length: requests.filter((item) => item.status === status).length,
     })),
   ];
 
   const [filter, setFilter] = useState<string>("all");
   const [activeFilter, setActiveFilter] = useState<number>(0);
   const [sortOption, setSortOption] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchRequests() {
+      setIsLoading(true);
+      try {
+        const { data, error } = await getRequests();
+        if (error) {
+          setError(error.message);
+        } else {
+          setRequests(data || []);
+        }
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchRequests();
+  }, []);
 
   function handleSortOptionChange(value: string) {
     setSortOption(value);
@@ -46,8 +61,19 @@ export default function Requests() {
     setFilter(filterBtns[index].item);
   }
 
+  const recomposedData = requests.map((item) => {
+    const { "request date": requestDate, ...rest } = item;
+    return {
+      ...rest,
+      destination: `${item.origin} - ${item.destination}`,
+      "request date": formatDateTime(requestDate),
+    };
+  });
+
   const filteredData =
-    filter === "all" ? body : body.filter((item) => item.status === filter);
+    filter === "all"
+      ? recomposedData
+      : recomposedData.filter((item) => item.status === filter);
 
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortOption === "weight") {
@@ -62,9 +88,7 @@ export default function Requests() {
 
   return (
     <DynamicPage
-      searchBarComponent={
-        <SearchBar placeHolder="Search by request id" />
-      }
+      searchBarComponent={<SearchBar placeHolder="Search by request id" />}
       headerFilters={
         <DynamicHeader
           title="requests"
@@ -95,11 +119,18 @@ export default function Requests() {
         />
       }
       tableComponent={
-        <DynamicTable<RequestBodyType>
-          header={header}
-          body={sortedData}
-          gridColumns="1fr 2fr 1fr 1.5fr 1fr"
-        />
+        isLoading || requests === null ? (
+          <p>Loading requests...</p>
+        ) : error ? (
+          <p>Error loading requests: {error}</p>
+        ) : (
+          <DynamicTable<RequestBodyType>
+            header={header}
+            body={sortedData}
+            statuses={["approved", "pending"]}
+            gridColumns="1.5fr 1fr 1.5fr 1fr"
+          />
+        )
       }
     />
   );

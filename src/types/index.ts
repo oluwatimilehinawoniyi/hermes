@@ -47,9 +47,11 @@ interface ClientDataType {
 interface RequestBodyType {
   id: string;
   weight: number;
+  client_id: string;
+  origin: string;
   destination: string;
   "request date": string;
-  status: "pending" | "accepted";
+  status: "pending" | "approved" | "denied";
 }
 
 interface RequestDataType {

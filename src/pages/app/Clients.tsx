@@ -5,7 +5,6 @@ import DynamicPage, {
   DynamicTable,
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
-import data from "@data/clientsData.json";
 import { useEffect, useState } from "react";
 import { ClientBodyType } from "src/types";
 
@@ -14,9 +13,7 @@ export default function Clients() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { header } = {
-    header: data.header.filter((item) => item !== "id"),
-  };
+  const header = ["name", "email", "phone", "address", "status"];
 
   useEffect(() => {
     async function fetchClients() {

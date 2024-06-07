@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getParcels } from "@api/parcels";
 import DynamicPage, {
   DynamicHeader,
   DynamicTable,
@@ -7,22 +8,49 @@ import DynamicPage, {
 } from "@components/layouts/Dashboard/DynamicPageLayout/DynamicPage";
 import Filter from "@components/UI/DashboardRelated/Filter/Filter";
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
-import data from "@data/parcelData.json";
-import { transformData, validateStatus } from "@utils/TransformData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { ParcelBodyType } from "src/types";
-
-const validParcelStatuses: ReadonlyArray<
-  "delivered" | "on way" | "delayed" | "not assigned"
-> = ["delivered", "on way", "delayed", "not assigned"];
-
-const transformedData = transformData<ParcelBodyType>(data.body, (status) =>
-  validateStatus(status, validParcelStatuses)
-);
+interface ParcelBodyInfo {
+  id: string;
+  "tracking id": string;
+  status: string;
+  weight: number;
+  origin: string;
+  destination: string;
+}
 
 export default function Parcels() {
-  const { header, body } = { header: data.header, body: transformedData };
+  const [parcels, setParcels] = useState<ParcelBodyInfo[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const header = ["tracking id", "origin", "destination", "weight", "status"];
+
+  const body = parcels?.map((item) => ({
+    id: item.id,
+    "tracking id": item.id,
+    origin: item.origin,
+    destination: item.destination,
+    weight: item.weight,
+    status: item.status,
+  }));
+
+  useEffect(() => {
+    async function fetchParcels() {
+      setIsLoading(true);
+      const { data, error } = await getParcels();
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setParcels(data || []);
+      }
+
+      setIsLoading(false);
+    }
+
+    fetchParcels();
+  }, []);
 
   const filterBtns = [
     { item: "all", length: body.length },
@@ -91,11 +119,18 @@ export default function Parcels() {
         />
       }
       tableComponent={
-        <DynamicTable<ParcelBodyType>
-          header={header}
-          body={sortedData}
-          gridColumns="1fr 1fr 1fr 1.5fr 1.5fr 1fr 1fr"
-        />
+        isLoading || parcels === null ? (
+          <p>Loading parcels...</p>
+        ) : error ? (
+          <p>Error loading parcels: {error}</p>
+        ) : (
+          <DynamicTable<ParcelBodyInfo>
+            header={header}
+            body={sortedData}
+            statuses={["delivered", "on way", "delayed"]}
+            gridColumns="1fr 1.5fr 1.5fr 1fr 1fr"
+          />
+        )
       }
     />
   );

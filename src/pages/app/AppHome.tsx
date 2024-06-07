@@ -20,7 +20,7 @@ export default function AppHome() {
       title: "new packages",
       stats:
         parcelData.filter((item) => item.status === "not assigned").length +
-        requestData.filter((item) => item.status === "accepted").length,
+        requestData.filter((item) => item.status === "approved").length,
       icon: Package,
       colour: "var(--purple)",
     },
