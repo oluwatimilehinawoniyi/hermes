@@ -37,3 +37,12 @@ npm install
 ```
 npm run dev
 ```
+
+## Contributing
+We welcome contributions to improve Hermes Logistics. Please follow these steps to contribute:
+
+### Fork the repository.
+- Create a new branch (git checkout -b feature-branch).
+- Commit your changes (git commit -m 'Add some feature').
+- Push to the branch (git push origin feature-branch).
+- Create a new Pull Request.
