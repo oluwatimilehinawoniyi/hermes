@@ -5,7 +5,7 @@ interface TestimonyType {
   imgSrc: string;
   alt: string;
   testimony: string;
-},
+}
 
 const testimonies: TestimonyType[] = [
   {
