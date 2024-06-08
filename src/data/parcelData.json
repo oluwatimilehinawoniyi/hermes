@@ -6,7 +6,7 @@
     "arrival time",
     "departure time",
     "destination",
-    "status",
+    "status"
   ],
   "body": [
     {
