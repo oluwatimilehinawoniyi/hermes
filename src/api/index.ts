@@ -1,5 +1,10 @@
 import supabase from "@utils/supabase";
-import { ParcelBodyType, RequestBodyType, ShipmentBodyType } from "src/types";
+import {
+  ClientBodyType,
+  ParcelBodyType,
+  RequestBodyType,
+  ShipmentBodyType,
+} from "src/types";
 
 interface FetchResult<T> {
   data: T[] | null;
@@ -18,5 +23,10 @@ export async function getParcels(): Promise<FetchResult<ParcelBodyType>> {
 
 export async function getShipments(): Promise<FetchResult<ShipmentBodyType>> {
   const { data, error } = await supabase.from("shipments").select();
+  return { data, error: error ? error.message : null };
+}
+
+export async function getClients(): Promise<FetchResult<ClientBodyType>> {
+  const { data, error } = await supabase.from("clients").select();
   return { data, error: error ? error.message : null };
 }

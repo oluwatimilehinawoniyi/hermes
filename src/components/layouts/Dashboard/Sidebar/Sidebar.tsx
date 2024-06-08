@@ -15,14 +15,26 @@ import {
   User,
 } from "lucide-react";
 import useModal from "@hooks/useModal";
+import useTableFetcher from "@hooks/useTableFetcher";
+import { getClients, getParcels, getRequests, getShipments } from "@api/index";
 
 export default function Sidebar() {
+  const { data: parcels } = useTableFetcher(getParcels);
+  const { data: requests } = useTableFetcher(getRequests);
+  const { data: clients } = useTableFetcher(getClients);
+  const { data: shipments } = useTableFetcher(getShipments);
+
   const navItems = [
     { item: "dashboard", icon: LayoutGrid, hasStat: false },
-    { item: "shipment", icon: Truck, hasStat: false },
-    { item: "parcels", icon: Box, stat: 10, hasStat: true },
-    { item: "requests", icon: ClipboardList, hasStat: true, stat: 10 },
-    { item: "clients", icon: User, hasStat: false },
+    { item: "shipment", icon: Truck, hasStat: true, stat: shipments.length },
+    { item: "parcels", icon: Box, stat: parcels.length, hasStat: true },
+    {
+      item: "requests",
+      icon: ClipboardList,
+      hasStat: true,
+      stat: requests.length,
+    },
+    { item: "clients", icon: User, hasStat: true, stat: clients.length },
   ];
 
   const { toggleNVModal, toggleNSModal } = useModal();
