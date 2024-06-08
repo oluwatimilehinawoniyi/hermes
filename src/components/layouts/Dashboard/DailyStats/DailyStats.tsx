@@ -16,7 +16,7 @@ export default function DailyStats() {
             width: "50%",
             display: "grid",
             placeContent: "center",
-            // border: "1px solid red",
+            // border: "2px solid red",
             position: "relative",
           }}
         >
