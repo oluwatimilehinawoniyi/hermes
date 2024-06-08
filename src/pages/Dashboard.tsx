@@ -10,29 +10,37 @@ export default function Dashboard() {
   const { isNSOpen, isNVOpen } = useModal();
   return (
     <section className={style.dashboard}>
-      <section className={style.sidebarHolder}>
-        <Sidebar />
-      </section>
-
-      <div
-        className={style.mainContent}
-        style={{
-          height: isNVOpen || isNSOpen ? "100vh" : undefined,
-          overflowY: isNVOpen || isNSOpen ? "hidden" : undefined,
-        }}
-      >
-        <Outlet />
+      {/* view warning */}
+      <div className={style.mobileWarning}>
+        <p>For the best experience, please use a desktop browser.</p>
       </div>
-      {isNSOpen && (
-        <Modal>
-          <CreateShipment />
-        </Modal>
-      )}
-      {isNVOpen && (
-        <Modal>
-          <CreateVehicle />
-        </Modal>
-      )}
+      {/* view warning */}
+      
+      <div className={style.dashboardPage}>
+        <section className={style.sidebarHolder}>
+          <Sidebar />
+        </section>
+
+        <div
+          className={style.mainContent}
+          style={{
+            height: isNVOpen || isNSOpen ? "100vh" : undefined,
+            overflowY: isNVOpen || isNSOpen ? "hidden" : undefined,
+          }}
+        >
+          <Outlet />
+        </div>
+        {isNSOpen && (
+          <Modal>
+            <CreateShipment />
+          </Modal>
+        )}
+        {isNVOpen && (
+          <Modal>
+            <CreateVehicle />
+          </Modal>
+        )}
+      </div>
     </section>
   );
 }
