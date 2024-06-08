@@ -4,7 +4,7 @@ interface ItemProps {
   title: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   isLink?: boolean;
-  stat: number;
+  stat: number | string;
   colour: string;
 }
 

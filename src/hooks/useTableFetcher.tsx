@@ -1,15 +1,27 @@
 import { useState, useEffect } from "react";
 
-export default function useTableFetcher<T>(fetchDataFunc: () => Promise<T[]>) {
+// Define the type for the fetched data
+interface FetchResult<T> {
+  data: T[] | null;
+  error: string | null;
+}
+
+export default function useTableFetcher<T>(
+  fetchDataFunc: () => Promise<FetchResult<T>>
+) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchData = async () => {
       try {
-        const result: T[] = await fetchDataFunc();
-        setData(result);
+        const result = await fetchDataFunc();
+        if (result.error) {
+          setError(result.error);
+        } else {
+          setData(result.data || []);
+        }
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -21,7 +33,7 @@ export default function useTableFetcher<T>(fetchDataFunc: () => Promise<T[]>) {
       }
     };
 
-    fetchdata();
+    fetchData();
   }, [fetchDataFunc]);
 
   return { data, loading, error };

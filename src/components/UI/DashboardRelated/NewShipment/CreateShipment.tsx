@@ -18,6 +18,8 @@ interface NewShipment {
   expected_arrival_time: string;
   actual_arrival_time: string | null;
   delay: string | null;
+  capacity: number;
+  truck: string;
 }
 
 interface Vehicle {
@@ -44,6 +46,8 @@ export default function CreateShipment() {
     expected_arrival_time: new Date().toISOString().slice(0, 16),
     actual_arrival_time: null,
     delay: null,
+    capacity: 0,
+    truck: "",
   });
 
   const { toggleNSModal } = useModal();
@@ -51,6 +55,8 @@ export default function CreateShipment() {
   const handleVehicleSelect = (vehicle: Vehicle) => {
     setNewShipment({
       ...newShipment,
+      capacity: vehicle.capacity,
+      truck: `${vehicle.truck_model} ${vehicle.truck_number}`,
       truck_id: vehicle.id,
     });
   };
@@ -76,8 +82,12 @@ export default function CreateShipment() {
 
     const dataToSend = {
       ...newShipment,
+      // truck:`${ve}`
+      capacity: Number(newShipment.capacity),
       departure_time: new Date(newShipment.departure_time).toISOString(),
-      expected_arrival_time: new Date(newShipment.expected_arrival_time).toISOString(),
+      expected_arrival_time: new Date(
+        newShipment.expected_arrival_time
+      ).toISOString(),
       actual_arrival_time: newShipment.actual_arrival_time
         ? new Date(newShipment.actual_arrival_time).toISOString()
         : null,

@@ -5,20 +5,20 @@ export default function AvailableTrucks() {
   const availableTrucksData = [
     {
       truckId: "v567985",
-      from: "barcelona",
-      to: "madrid",
+      from: "lagos",
+      to: "kaduna",
       capacity: 90,
     },
     {
       truckId: "s586467",
-      from: "barcelona",
-      to: "getafe",
+      from: "abuja",
+      to: "port harcourt",
       capacity: 50,
     },
     {
       truckId: "b276828",
-      from: "barcelona",
-      to: "seville",
+      from: "osun",
+      to: "ekiti",
       capacity: 25,
     },
   ];

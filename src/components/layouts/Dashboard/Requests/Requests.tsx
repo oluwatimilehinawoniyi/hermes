@@ -1,37 +1,62 @@
+import { useState, useEffect } from "react";
 import ShowAll from "@components/UI/DashboardRelated/ShowAll/ShowAll";
 import { Package, Truck } from "lucide-react";
 import style from "./requests.module.css";
+import { getRequests } from "@api/index";
+import { RequestBodyType } from "src/types";
+import useTableFetcher from "@hooks/useTableFetcher";
+
+interface RequestsType {
+  id: string;
+  from: string;
+  title: string;
+  to: string;
+  time: number;
+  category: string;
+  colour: string;
+}
 
 export default function Requests() {
-  const requests = [
-    {
-      id: 1,
-      title: "parcel redirection",
-      from: "valencia",
-      to: "barcelona",
-      time: "1",
-      category: "parcel",
-      colour: "var(--warning)",
-    },
-    {
-      id: 2,
-      title: "packing problem",
-      from: "barcelona",
-      to: "seville",
-      time: "10",
-      category: "parcel",
-      colour: "var(--warning)",
-    },
-    {
-      id: 3,
-      title: "machine breakdown",
-      from: "madrid",
-      to: "barcelona",
-      time: "20",
-      category: "machine",
-      colour: "var(--warning)",
-    },
-  ];
+  const { data: requestData } = useTableFetcher<RequestBodyType>(getRequests);
+
+  const [requests, setRequests] = useState<RequestsType[]>([]);
+
+  const getRandomRequests = (data: RequestBodyType[], numRequests: number) => {
+    const shuffled = data.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, numRequests).map((item) => {
+      const { origin, destination } = item;
+      const titles = ["parcel delivery", "parcel redirection"];
+      const categories = ["machine", "parcel"];
+      const times = [1, 20, 10, 15, 19];
+
+      const title = titles[Math.floor(Math.random() * titles.length)];
+      const category =
+        categories[Math.floor(Math.random() * categories.length)];
+      const time = times[Math.floor(Math.random() * times.length)];
+
+      return {
+        id: item.id,
+        title: title,
+        from: origin,
+        to: destination,
+        time: time,
+        category: category,
+        colour:
+          title === "parcel delivery" ? "var(--primary)" : "var(--warning)",
+      };
+    });
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRequests(getRandomRequests(requestData, 3));
+    }, 5000);
+
+    setRequests(getRandomRequests(requestData, 3));
+
+    return () => clearInterval(interval);
+  }, [requestData]);
+
   return (
     <section className={style.requests}>
       <div className={style.header}>
@@ -67,7 +92,7 @@ function Request({
   title: string;
   from: string;
   to: string;
-  time: string;
+  time: number;
   category: string;
   colour: string;
 }) {

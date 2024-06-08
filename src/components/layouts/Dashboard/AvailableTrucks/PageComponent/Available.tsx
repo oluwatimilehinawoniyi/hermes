@@ -15,7 +15,7 @@ export default function Available({
 }) {
   const data: AvailableTruckType[] = availableTruckData.map((item) => ({
     ...item,
-    cargoesLoaded: Math.floor(Math.random() * (item["weight (kg)"] + 1)),
+    cargoesLoaded: Math.floor(Math.random() * (item.capacity + 1)),
   }));
 
   return (
@@ -25,16 +25,17 @@ export default function Available({
           <div className={styles.availableTruck}>
             <div className={styles.header}>
               <span>
-                <h1>{truck.destination}</h1>
-                <p>{truck["arrival date"]}</p>
+                <h1>
+                  {truck.origin} - {truck.destination}
+                </h1>
+                {/* <p>{truck["departure date"]}</p> */}
               </span>
               <p
                 style={{
                   color: truckInfo({ truck }),
                 }}
               >
-                {Math.round((truck.cargoesLoaded / truck["weight (kg)"]) * 100)}
-                %
+                {Math.round((truck.cargoesLoaded / truck.capacity) * 100)}%
               </p>
             </div>
             <div className={styles.truckInfo}>
@@ -42,13 +43,13 @@ export default function Available({
                 <span>
                   <p>available Kg</p>
                   <p>
-                    <span>{truck.cargoesLoaded}</span> / {truck["weight (kg)"]}
+                    <span>{truck.cargoesLoaded}</span> / {truck.capacity}
                   </p>
                 </span>
                 <span>
                   <p>shipment number</p>
                   <p>
-                    <span>{truck.id}</span>
+                    <span>{truck.id.slice(0, 8)}</span>
                   </p>
                 </span>
                 <span>
@@ -62,7 +63,7 @@ export default function Available({
                 <Truck
                   fillColor={truckInfo({ truck })}
                   loadWidth={Math.round(
-                    (truck.cargoesLoaded / truck["weight (kg)"]) * 100
+                    (truck.cargoesLoaded / truck.capacity) * 100
                   )}
                 />
               </div>

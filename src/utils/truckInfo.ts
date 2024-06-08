@@ -3,7 +3,7 @@ import { AvailableTruckType } from "@components/layouts/Dashboard/AvailableTruck
 export function truckInfo({ truck }: { truck: AvailableTruckType }) {
   // Calculate load percentage
   const loadPercentage = Math.round(
-    (truck.cargoesLoaded / truck["weight (kg)"]) * 100
+    (truck.cargoesLoaded / truck.capacity) * 100
   );
 
   // Determine color based on load percentage

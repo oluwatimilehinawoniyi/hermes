@@ -146,12 +146,14 @@ export function DynamicTable<T extends HasIdAndStatus>({
     switch (status) {
       case "delayed":
       case "denied":
+      case "pending":
       case "inactive":
         return style.delayedStatus;
       case "on way":
-      case "pending":
+      case "in transit":
         return style.onWayStatus;
       case "arrived":
+      case "available":
       case "delivered":
       case "approved":
       case "active":

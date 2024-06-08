@@ -4,15 +4,16 @@ interface ShipmentDataType {
 }
 
 interface ShipmentBodyType {
-  destination: string;
   id: string;
   truck: string;
-  "weight (kg)": number;
-  status: "arrived" | "on way" | "delayed";
-  "departure date": string;
-  "arrival date": string;
-  "time delay": string;
-  available: boolean;
+  capacity: number;
+  origin: string;
+  destination: string;
+  "departure date": Date | string | number;
+  "expected arrival time": Date | string | number;
+  // "arrival date": string;
+  status: "pending" | "in transit" | "completed";
+  delay: string;
 }
 
 interface ParcelDataType {

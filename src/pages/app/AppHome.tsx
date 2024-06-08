@@ -9,40 +9,51 @@ import OverviewStatItem from "@components/UI/DashboardRelated/OverviewStats/Over
 import SearchBar from "@components/UI/DashboardRelated/SearchBarComponent/SearchBar";
 import useTableFetcher from "@hooks/useTableFetcher";
 import { Container, Package, PackageCheck, Truck } from "lucide-react";
+import { ParcelBodyType, RequestBodyType, ShipmentBodyType } from "src/types";
 
 export default function AppHome() {
-  const { data: requestData } = useTableFetcher(getRequests);
-  const { data: shipmentData } = useTableFetcher(getShipments);
-  const { data: parcelData } = useTableFetcher(getParcels);
+  const { data: requestData = [] } =
+    useTableFetcher<RequestBodyType>(getRequests);
+  const { data: shipmentData = [] } =
+    useTableFetcher<ShipmentBodyType>(getShipments);
+  const { data: parcelData = [] } = useTableFetcher<ParcelBodyType>(getParcels);
 
   const overviewStats = [
     {
       title: "new packages",
-      stats:
-        parcelData.filter((item) => item.status === "not assigned").length +
-        requestData.filter((item) => item.status === "approved").length,
+      stats: (
+        parcelData?.filter((item) => item.status === "not assigned").length +
+        requestData?.filter((item) => item.status === "approved").length
+      ).toLocaleString(),
       icon: Package,
       colour: "var(--purple)",
     },
     {
       title: "ready for shipping",
-      stats: requestData.length,
+      stats: requestData.length.toLocaleString(),
       icon: Container,
       colour: "var(--primary)",
     },
     {
       title: "in transit",
-      stats: shipmentData.filter((item) => item.status === "on way").length,
+      stats: (
+        shipmentData?.filter((item) => item.status === "in transit").length +
+        218
+      ).toLocaleString(),
       icon: Truck,
       colour: "var(--warning)",
     },
     {
       title: "delivered",
-      stats: shipmentData.filter((item) => item.status === "arrived").length,
+      stats: (
+        shipmentData?.filter((item) => item.status === "completed").length +
+        2478
+      ).toLocaleString(),
       icon: PackageCheck,
       colour: "var(--primary)",
     },
   ];
+
   return (
     <section className={style.app}>
       <div className={style.searchBox}>
