@@ -7,7 +7,7 @@
     "status",
     "departure date",
     "arrival date",
-    "time delay"
+    "time delay",
   ],
   "body": [
     {
