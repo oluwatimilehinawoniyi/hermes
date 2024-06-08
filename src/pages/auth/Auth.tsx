@@ -9,7 +9,7 @@ export default function Auth() {
       <AuthLeaf />
       <DesignLeaf />
     </section>
-  );;
+  );
 }
 
 function AuthLeaf() {
