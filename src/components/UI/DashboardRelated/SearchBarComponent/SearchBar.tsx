@@ -5,7 +5,7 @@ import DateTime from "../DateTime/DateTime";
 export default function SearchBar({ placeHolder }: { placeHolder: string }) {
   return (
     <div className={style.searchBar}>
-      {/* add interaction, when a search is not valid and when it is 
+      {/* Add interaction, when a search is not valid and when it is 
       <SearchCheck />
       <SearchX />
       */}
