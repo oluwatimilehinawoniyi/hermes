@@ -7,7 +7,7 @@
       "email": "john.doe@example.com",
       "phone": "123-456-7890",
       "address": "123 Elm Street, Springfield",
-      "status": "active"
+      "status": "active",
     },
     {
       "id": "c002",
